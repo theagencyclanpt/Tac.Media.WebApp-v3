@@ -1,0 +1,19 @@
+<Project>
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Product>Tac.Media</Product>
+    <Company>Tac | Software Solutions</Company>
+    <Copyright>Copyright © Tac | Software Solutions</Copyright>
+    <Authors>Tac | Tac Solutions</Authors>
+  </PropertyGroup>
+
+    <PropertyGroup>
+    <AssemblyVersion>2021.0.0</AssemblyVersion>
+    <FileVersion>2021.13.0.21320</FileVersion>
+    <VersionPrefix>2021.13.0</VersionPrefix>
+  </PropertyGroup>
+
+</Project>

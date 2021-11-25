@@ -1,0 +1,38 @@
+<div class="layout">
+  <div class="side-bar">
+    <div class="side-bar__options">
+      <mat-button-toggle-group class="full-width-field">
+        <mat-button-toggle value="result" (click)="ChangeBanerType('result')" class="full-width-field"
+          [checked]="isBannerResult">Resultado
+        </mat-button-toggle>
+        <mat-button-toggle value="announcement" (click)="ChangeBanerType('announcement')" class="full-width-field"
+          [checked]="!isBannerResult">Anuncio
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <div class="side-bar__options">
+      <tac-announcement-form (onChangeForm)="SetFormData($event)" (loadOverwrite)="LoadOverWrite($event)"
+        (unloadOverwrite)="UnloadOverwrite($event)">
+      </tac-announcement-form>
+    </div>
+    <div class="side-bar__options side-bar__options-buttons">
+      <button mat-raised-button (click)="GetImage()">Download</button>
+      <button mat-raised-button disabled>Url</button>
+    </div>
+  </div>
+  <div class="side-bar__preview">
+    <button mat-raised-button (click)="TooglePreview()">
+      <mat-icon aria-hidden="false">swap_horiz</mat-icon>
+    </button>
+  </div>
+  <div class="preview" [ngStyle]="{'display': isPreviewInstagram ? 'flex' : 'none'}">
+    <tac-canvas #instagram [index]="i" [map]="instagramCanvasMapped[i]"
+      *ngFor="let number of instagramCanvasMapped; let i = index"></tac-canvas>
+  </div>
+  <div class="preview" [ngStyle]="{'display': isPreviewInstagram ? 'none' : 'flex'}">
+    <tac-canvas #twitter [index]="i" [map]="twitterCanvasMapped[i]"
+      *ngFor="let number of twitterCanvasMapped; let i = index"></tac-canvas>
+  </div>
+</div>
+
+<canvas #canvasMain style="display: none;"></canvas>

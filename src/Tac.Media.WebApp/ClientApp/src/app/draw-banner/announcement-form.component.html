@@ -1,0 +1,33 @@
+<form [formGroup]="form">
+  <div class="form-side datetime">
+    <mat-form-field>
+      <mat-label>Hora</mat-label>
+      <input matInput type="time" formControlName="hora">
+    </mat-form-field>
+  </div>
+  <mat-form-field *ngIf="!form.get('ligalogo').value">
+    <mat-label>Campeonato</mat-label>
+    <input matInput formControlName="campeonato">
+  </mat-form-field>
+  <div class="upload-images">
+    <input type="file" hidden #logoTeam1 formControlName="team1logo" (change)="onFileChange($event, 'team1logo')" />
+    <button mat-raised-button (click)="onClickHandler('team1logo', !!form.get('team1logo').value)">
+      <h6>Team 1</h6>
+      <mat-icon aria-hidden="false" *ngIf="!form.get('team1logo').value">cloud_upload</mat-icon>
+      <mat-icon aria-hidden="false" *ngIf="form.get('team1logo').value">close</mat-icon>
+    </button>
+    <input type="file" hidden #logoTeam2 formControlName="team2logo" (change)="onFileChange($event, 'team2logo')" />
+    <button mat-raised-button (click)="onClickHandler('team2logo', !!form.get('team2logo').value)">
+      <h6>Team 2</h6>
+      <mat-icon aria-hidden="false" *ngIf="!form.get('team2logo').value">cloud_upload</mat-icon>
+      <mat-icon aria-hidden="false" *ngIf="form.get('team2logo').value">close</mat-icon>
+    </button>
+    <input type="file" hidden #logoImage formControlName="ligalogo" (change)="onFileChange($event, 'ligalogo')" />
+    <button mat-raised-button (click)="onClickHandler('ligalogo', !!form.get('ligalogo').value)"
+      *ngIf="!form.get('campeonato').value">
+      <h6>Liga</h6>
+      <mat-icon aria-hidden="false" *ngIf="!form.get('ligalogo').value">cloud_upload</mat-icon>
+      <mat-icon aria-hidden="false" *ngIf="form.get('ligalogo').value">close</mat-icon>
+    </button>
+  </div>
+</form>
