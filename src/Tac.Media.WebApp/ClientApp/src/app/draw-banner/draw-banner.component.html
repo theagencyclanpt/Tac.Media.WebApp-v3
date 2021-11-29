@@ -11,9 +11,16 @@
       </mat-button-toggle-group>
     </div>
     <div class="side-bar__options">
-      <tac-announcement-form (onChangeForm)="SetFormData($event)" (loadOverwrite)="LoadOverWrite($event)"
-        (unloadOverwrite)="UnloadOverwrite($event)">
-      </tac-announcement-form>
+      <ng-container *ngIf="!isBannerResult">
+        <tac-announcement-form (onChangeForm)="SetFormData($event)" (loadOverwrite)="LoadOverWrite($event)"
+          (unloadOverwrite)="UnloadOverwrite($event)">
+        </tac-announcement-form>
+      </ng-container>
+      <ng-container *ngIf="isBannerResult">
+        <tac-announcement-form (onChangeForm)="SetFormData($event)" (loadOverwrite)="LoadOverWrite($event)"
+          (unloadOverwrite)="UnloadOverwrite($event)">
+        </tac-announcement-form>
+      </ng-container>
     </div>
     <div class="side-bar__options side-bar__options-buttons">
       <button mat-raised-button (click)="GetImage()">Download</button>

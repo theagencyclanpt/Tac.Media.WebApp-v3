@@ -31,7 +31,7 @@ export class AnnouncementFormComponent implements OnInit {
   ngOnInit(): void {
     this.form = new FormGroup({
       hora: new FormControl(''),
-      dia: new FormControl(''),
+      data: new FormControl(''),
       campeonato: new FormControl(''),
       ligalogo: new FormControl(''),
       team2logo: new FormControl(''),
@@ -59,6 +59,14 @@ export class AnnouncementFormComponent implements OnInit {
 
     this.form.get('hora').valueChanges.subscribe((val: string) => {
       this.OnChangeForm.emit({ key: "hora", value: val.replace(":", "H") });
+    });
+
+    this.form.get('data').valueChanges.subscribe((val: string) => {
+
+      const date = new Date(val);
+      const month = date.getUTCMonth() + 1;
+
+      this.OnChangeForm.emit({ key: "data", value: date.getUTCDate() + "/" + month });
     });
   }
 

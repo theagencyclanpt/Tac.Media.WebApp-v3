@@ -167,6 +167,14 @@ const Configurations = {
           "Color": "white"
         },
         {
+          "Id": "data",
+          "Type": "text",
+          "X": 505,
+          "Y": 1365,
+          "Font": "48px HansonBold",
+          "Color": "white"
+        },
+        {
           "Id": "campeonato",
           "Type": "text",
           "X": 25,
@@ -252,6 +260,14 @@ const Configurations = {
           "Type": "text",
           "X": 590,
           "Y": 505,
+          "Font": "48px HansonBold",
+          "Color": "white"
+        },
+        {
+          "Id": "data",
+          "Type": "text",
+          "X": 590,
+          "Y": 585,
           "Font": "48px HansonBold",
           "Color": "white"
         },

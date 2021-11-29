@@ -64,10 +64,14 @@ export class CanvasComponent implements OnInit {
         img.crossOrigin = "anonymous";
         img.onload = function () {
           if (map.Resolution && map.Resolution.Height && map.Resolution.Width) {
+            let normalizeHeight = map.Resolution.Height * (img.height / img.width);
+
             if (override && override.Width && override.Height && override.X && override.Y) {
-              ctx.drawImage(img, override.X, override.Y, override.Width, override.Height);
+              normalizeHeight = override.Height * (img.height / img.width);
+
+              ctx.drawImage(img, override.X, (override.Y + (override.Height / 2) - (normalizeHeight / 2)), override.Width, normalizeHeight);
             } else {
-              ctx.drawImage(img, map.X, map.Y, map.Resolution.Width, map.Resolution.Height);
+              ctx.drawImage(img, map.X, (map.Y + (map.Resolution.Height / 2) - (normalizeHeight / 2)), map.Resolution.Width, normalizeHeight);
             }
           } else {
             ctx.drawImage(img, map.X, map.Y);

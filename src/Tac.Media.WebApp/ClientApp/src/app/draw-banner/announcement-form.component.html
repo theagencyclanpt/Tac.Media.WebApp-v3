@@ -5,6 +5,12 @@
       <input matInput type="time" formControlName="hora">
     </mat-form-field>
   </div>
+  <div class="form-side datetime">
+    <mat-form-field>
+      <mat-label>Data</mat-label>
+      <input matInput type="date" formControlName="data">
+    </mat-form-field>
+  </div>
   <mat-form-field *ngIf="!form.get('ligalogo').value">
     <mat-label>Campeonato</mat-label>
     <input matInput formControlName="campeonato">
