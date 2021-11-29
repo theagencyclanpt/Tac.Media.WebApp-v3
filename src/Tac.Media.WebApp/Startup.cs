@@ -20,7 +20,7 @@ namespace Tac.Media.WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSwaggerGen();
-            services.AddControllersWithViews();
+            
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -63,6 +63,7 @@ namespace Tac.Media.WebApp
                 app.UseSpaStaticFiles();
             }
 
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
@@ -81,7 +82,7 @@ namespace Tac.Media.WebApp
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/webpack-dev-server/");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
                 }
             });
         }

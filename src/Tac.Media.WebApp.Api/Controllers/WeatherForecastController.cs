@@ -4,10 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Tac.Media.WebApp.Api
+namespace Tac.Media.WebApp.Api.Controllers
 {
+    [ApiController]
     [Route("api/water")]
-    public class WeatherForecastController : ControllerBase
+    public class WeatherForecastController 
     {
         private static readonly string[] Summaries = new[]
         {
