@@ -14,6 +14,7 @@ export interface IPaint {
   Font: string,
   TextAlign: CanvasTextAlign,
   ForceRenderX: boolean,
+  IsStrokeText: boolean,
   Preview: {
     Width: string,
     Height: string,
@@ -103,17 +104,30 @@ export class CanvasComponent implements OnInit {
         const value = map.Value ? map.Value : "";
 
         if (override && override.X && override.Y) {
-          ctx.fillStyle = override.Color;
           ctx.font = override.Font;
-          ctx.fillText(value, override.X, override.Y);
+          if (map.IsStrokeText) {
+            ctx.strokeStyle = override.Color;
+            ctx.lineWidth = 2;
+            ctx.strokeText(value, override.X, override.Y);
+          } else {
+            ctx.fillStyle = override.Color;
+            ctx.fillText(value, override.X, override.Y);
+          }
         } else {
           if (map.TextAlign) {
             ctx.textAlign = map.TextAlign;
           }
 
-          ctx.fillStyle = map.Color;
           ctx.font = map.Font;
-          ctx.fillText(value, map.X, map.Y);
+
+          if (map.IsStrokeText) {
+            ctx.strokeStyle = map.Color;
+            ctx.lineWidth = 2;
+            ctx.strokeText(value, map.X, map.Y);
+          } else {
+            ctx.fillStyle = map.Color;
+            ctx.fillText(value, map.X, map.Y);
+          }
         }
         break;
 

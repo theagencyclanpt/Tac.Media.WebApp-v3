@@ -58,9 +58,13 @@ export class AnnouncementFormComponent implements OnInit {
     this.form.get('data').valueChanges.subscribe((val: string) => {
 
       const date = new Date(val);
-      const month = date.getUTCMonth() + 1;
+      let month = (date.getUTCMonth() + 1).toString();
+      let day = date.getUTCDate().toString();
 
-      this.OnChangeForm.emit({ key: "data", value: date.getUTCDate() + "/" + month });
+      month = [...month].length > 1 ? month : "0" + month;
+      day = [...day].length > 1 ? day : "0" + day;
+
+      this.OnChangeForm.emit({ key: "data", value: day + "/" + month });
     });
   }
 

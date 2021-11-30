@@ -9,7 +9,7 @@ const Configurations = {
       "Height": 1920,
       "Layers": {
         "0": "/assets/csgo.result/instagram/Layer_1.png",
-        "1": "/assets/csgo.result/instagram/Layer_2/Defeat/2.png",
+        "1": "/assets/csgo.result/instagram/Layer_2/Victory/2.png",
         "2": "/assets/csgo.result/instagram/Layer_3/1.png"
       },
       "Fields": [
@@ -73,7 +73,7 @@ const Configurations = {
           },
           {
             "Id": "1",
-            "Value": "/assets/csgo.result/instagram/Layer_2/Defeat/4.png"
+            "Value": "/assets/csgo.result/instagram/Layer_2/Victory/4.png"
           }
         ],
         "ChangeLayer3ToDefeatLabel": [
@@ -103,7 +103,7 @@ const Configurations = {
           },
           {
             "Id": "1",
-            "Value": "/assets/csgo.result/twitter/Layer_2/Defeat/4.png"
+            "Value": "/assets/csgo.result/twitter/Layer_2/Victory/4.png"
           }
         ],
         "ChangeLayer3ToDefeatLabel": [
@@ -119,7 +119,7 @@ const Configurations = {
       },
       "Layers": {
         "0": "/assets/csgo.result/twitter/Layer_1.png",
-        "1": "/assets/csgo.result/twitter/Layer_2/Defeat/1.png",
+        "1": "/assets/csgo.result/twitter/Layer_2/Victory/1.png",
         "2": "/assets/csgo.result/twitter/Layer_3/2.png"
       },
       "Fields": [
@@ -135,18 +135,18 @@ const Configurations = {
         {
           "Id": "team1Score",
           "Type": "text",
-          "X": 1500,
-          "Y": 610,
-          "Font": "65px BebasNeueRegular",
+          "X": 1470,
+          "Y": 620,
+          "Font": "86px BebasNeueRegular",
           "Color": "white",
           "TextAlign": "start"
         },
         {
           "Id": "team2Score",
           "Type": "text",
-          "X": 1265,
-          "Y": 610,
-          "Font": "38px BebasNeueRegular",
+          "X": 1700,
+          "Y": 620,
+          "Font": "86px BebasNeueRegular",
           "Color": "white",
           "TextAlign": "end",
         },
@@ -205,7 +205,8 @@ const Configurations = {
           "X": 505,
           "Y": 1365,
           "Font": "48px HansonBold",
-          "Color": "white"
+          "Color": "white",
+          "IsStrokeText": true
         },
         {
           "Id": "campeonato",
@@ -277,7 +278,8 @@ const Configurations = {
             "X": 520,
             "Y": 1250,
             "Font": "48px HansonBold",
-            "Color": "white"
+            "Color": "white",
+            "IsStrokeText": true
           },
         ]
       }
@@ -317,7 +319,8 @@ const Configurations = {
           "X": 590,
           "Y": 585,
           "Font": "48px HansonBold",
-          "Color": "white"
+          "Color": "white",
+          "IsStrokeText": true
         },
         {
           "Id": "campeonato",
@@ -347,7 +350,7 @@ const Configurations = {
           "Id": "ligalogo",
           "Type": "image",
           "X": 574,
-          "Y": 754,
+          "Y": 704,
           "Width": 160,
           "Height": 160
         }
