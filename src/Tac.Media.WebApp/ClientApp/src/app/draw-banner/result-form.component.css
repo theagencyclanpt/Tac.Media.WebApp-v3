@@ -36,3 +36,7 @@
 .upload-images > button:nth-child(-n+4){
   margin-right: 2px;
 }
+
+.full-width-field {
+  width: 100%;
+}

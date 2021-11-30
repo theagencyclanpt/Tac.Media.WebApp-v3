@@ -24,4 +24,10 @@
       <mat-icon aria-hidden="false" *ngIf="form.get('ligalogo').value">close</mat-icon>
     </button>
   </div>
+  <mat-button-toggle-group class="full-width-field" name="fontStyle">
+    <mat-button-toggle (click)="onClickResultState('victory')" [checked]="true" class="full-width-field">Victory
+    </mat-button-toggle>
+    <mat-button-toggle [disabled]="true" class="full-width-field">Draw</mat-button-toggle>
+    <mat-button-toggle (click)="onClickResultState('defeat')" class="full-width-field">Defeat</mat-button-toggle>
+  </mat-button-toggle-group>
 </form>

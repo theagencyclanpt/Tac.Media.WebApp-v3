@@ -105,4 +105,17 @@ export class ResultFormComponent implements OnInit {
         console.warn("Invalid type");
     }
   }
+
+  onClickResultState(key: string) {
+    switch (key) {
+      case "victory":
+        this.LoadOverwrite.emit({ id: "ChangeLayer3ToVictoryLabel" })
+        break;
+      case "defeat":
+        this.LoadOverwrite.emit({ id: "ChangeLayer3ToDefeatLabel" })
+        break;
+      default:
+        break;
+    }
+  }
 }
