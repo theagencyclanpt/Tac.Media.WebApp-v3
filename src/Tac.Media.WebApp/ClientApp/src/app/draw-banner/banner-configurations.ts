@@ -45,26 +45,26 @@ const Configurations = {
         }
       ],
       "Overwrite": {
-        "2": {
-          "Id": "2",
-          "Value": "/assets/csgo.result/instagram/Layer_3/2.png"
-        },
-        "team1logo": {
-          "Id": "team1logo",
-          "Type": "image",
-          "X": 33,
-          "Y": 1381,
-          "Width": 200,
-          "Height": 200
-        },
-        "team2logo": {
-          "Id": "team2logo",
-          "Type": "image",
-          "X": 444,
-          "Y": 1381,
-          "Width": 200,
-          "Height": 200
-        }
+        "ChangeLayer3ToVictoryLabel": [
+          {
+            "Id": "2",
+            "Value": "/assets/csgo.result/instagram/Layer_3/1.png"
+          },
+          {
+            "Id": "1",
+            "Value": "/assets/csgo.result/instagram/Layer_2/Defeat/4.png"
+          }
+        ],
+        "ChangeLayer3ToDefeatLabel": [
+          {
+            "Id": "2",
+            "Value": "/assets/csgo.result/instagram/Layer_3/2.png"
+          },
+          {
+            "Id": "1",
+            "Value": "/assets/csgo.result/instagram/Layer_2/Defeat/2.png"
+          }
+        ]
       }
     },
     "Twitter": {
@@ -199,34 +199,36 @@ const Configurations = {
         }
       ],
       "Overwrite": {
-        "2": {
-          "Id": "2",
-          "Value": "/assets/csgo.announce/instagram/Layer_3/2.png"
-        },
-        "team1logo": {
-          "Id": "team1logo",
-          "Type": "image",
-          "X": 33,
-          "Y": 1381,
-          "Width": 200,
-          "Height": 200
-        },
-        "team2logo": {
-          "Id": "team2logo",
-          "Type": "image",
-          "X": 444,
-          "Y": 1381,
-          "Width": 200,
-          "Height": 200
-        },
-        "hora": {
-          "Id": "hora",
-          "Type": "text",
-          "X": 520,
-          "Y": 1160,
-          "Font": "48px HansonBold",
-          "Color": "white",
-        }
+        "ChangeToLayoutWithText": [
+          {
+            "Id": "2",
+            "Value": "/assets/csgo.announce/instagram/Layer_3/2.png"
+          },
+          {
+            "Id": "team1logo",
+            "Type": "image",
+            "X": 33,
+            "Y": 1381,
+            "Width": 200,
+            "Height": 200
+          },
+          {
+            "Id": "team2logo",
+            "Type": "image",
+            "X": 444,
+            "Y": 1381,
+            "Width": 200,
+            "Height": 200
+          },
+          {
+            "Id": "hora",
+            "Type": "text",
+            "X": 520,
+            "Y": 1160,
+            "Font": "48px HansonBold",
+            "Color": "white",
+          }
+        ]
       }
     },
     "Twitter": {
@@ -237,10 +239,12 @@ const Configurations = {
         "Height": "580px",
       },
       "Overwrite": {
-        "2": {
-          "Id": "2",
-          "Value": "/assets/csgo.announce/twitter/Layer_3/2.png"
-        }
+        "ChangeToLayoutWithText": [
+          {
+            "Id": "2",
+            "Value": "/assets/csgo.announce/twitter/Layer_3/2.png"
+          }
+        ]
       },
       "Layers": {
         "0": "/assets/csgo.announce/twitter/Layer_1.png",

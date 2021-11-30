@@ -45,15 +45,9 @@ export class AnnouncementFormComponent implements OnInit {
     this.form.get('campeonato').valueChanges.subscribe(val => {
       this.OnChangeForm.emit({ key: "campeonato", value: val });
       if (val) {
-        this.LoadOverwrite.emit({ id: 2 })
-        this.LoadOverwrite.emit({ id: "team1logo" })
-        this.LoadOverwrite.emit({ id: "team2logo" })
-        this.LoadOverwrite.emit({ id: "hora" })
+        this.LoadOverwrite.emit({ id: "ChangeToLayoutWithText" })
       } else {
-        this.UnloadOverwrite.emit({ id: 2 });
-        this.UnloadOverwrite.emit({ id: "team1logo" })
-        this.UnloadOverwrite.emit({ id: "team2logo" })
-        this.UnloadOverwrite.emit({ id: "hora" })
+        this.UnloadOverwrite.emit({ id: "ChangeToLayoutWithText" });
       }
     });
 

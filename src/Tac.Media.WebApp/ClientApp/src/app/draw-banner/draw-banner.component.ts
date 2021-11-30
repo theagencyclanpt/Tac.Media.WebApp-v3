@@ -94,15 +94,30 @@ export class DrawBannerComponent implements OnInit {
   }
 
   public UnloadOverwrite({ id }) {
-    const instagramCanvas = this.instagramCanvas.toArray().find(e => e.map.Id == id);
-    const twitterCanvas = this.twitterCanvas.toArray().find(e => e.map.Id == id);
+    const twitterOverwrite = this._bannerMapped.Twitter.Overwrite[id];
 
-    if (instagramCanvas && this._bannerMapped.Instagram.Overwrite[id] && (instagramCanvas.override && instagramCanvas.override.Id == id)) {
-      instagramCanvas.RemoveOverride();
+    if (twitterOverwrite) {
+
+      twitterOverwrite.forEach(overWrite => {
+        const twitterCanvas = this.twitterCanvas.toArray().find(e => e.map.Id == overWrite.Id);
+        console.log(twitterCanvas);
+
+        if (twitterCanvas && (twitterCanvas.override && twitterCanvas.overrideId == id)) {
+          twitterCanvas.RemoveOverride();
+        }
+      });
     }
 
-    if (twitterCanvas && this._bannerMapped.Twitter.Overwrite[id] && (twitterCanvas.override && twitterCanvas.override.Id == id)) {
-      twitterCanvas.RemoveOverride();
+    const instagramOverwrite = this._bannerMapped.Instagram.Overwrite[id];
+
+    if (instagramOverwrite) {
+      instagramOverwrite.forEach(overWrite => {
+        const instagramCanvas = this.instagramCanvas.toArray().find(e => e.map.Id == overWrite.Id);
+
+        if (instagramCanvas && (instagramCanvas.override && instagramCanvas.overrideId == id)) {
+          instagramCanvas.RemoveOverride();
+        }
+      });
     }
   }
 
