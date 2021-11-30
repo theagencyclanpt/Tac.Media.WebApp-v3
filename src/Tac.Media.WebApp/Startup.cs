@@ -20,7 +20,8 @@ namespace Tac.Media.WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSwaggerGen();
-            
+            services.AddControllersWithViews();
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -56,7 +57,6 @@ namespace Tac.Media.WebApp
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
             if (!env.IsDevelopment())
             {

@@ -8,18 +8,11 @@ const Configurations = {
       "Width": 1080,
       "Height": 1920,
       "Layers": {
-        "0": "/assets/csgo.announce/instagram/Layer_1.png",
-        "2": "/assets/csgo.announce/instagram/Layer_3/1.png"
+        "0": "/assets/csgo.result/instagram/Layer_1.png",
+        "1": "/assets/csgo.result/instagram/Layer_2/Defeat/2.png",
+        "2": "/assets/csgo.result/instagram/Layer_3/1.png"
       },
       "Fields": [
-        {
-          "Id": "hora",
-          "Type": "text",
-          "X": 505,
-          "Y": 1285,
-          "Font": "48px HansonBold",
-          "Color": "white"
-        },
         {
           "Id": "campeonato",
           "Type": "text",
@@ -54,7 +47,7 @@ const Configurations = {
       "Overwrite": {
         "2": {
           "Id": "2",
-          "Value": "/assets/csgo.announce/instagram/Layer_3/2.png"
+          "Value": "/assets/csgo.result/instagram/Layer_3/2.png"
         },
         "team1logo": {
           "Id": "team1logo",
@@ -71,14 +64,6 @@ const Configurations = {
           "Y": 1381,
           "Width": 200,
           "Height": 200
-        },
-        "hora": {
-          "Id": "hora",
-          "Type": "text",
-          "X": 520,
-          "Y": 1160,
-          "Font": "48px HansonBold",
-          "Color": "white",
         }
       }
     },
@@ -92,23 +77,15 @@ const Configurations = {
       "Overwrite": {
         "2": {
           "Id": "2",
-          "Value": "/assets/csgo.announce/twitter/Layer_3/2.png"
+          "Value": "/assets/csgo.result/twitter/Layer_3/2.png"
         }
       },
       "Layers": {
-        "0": "/assets/csgo.announce/twitter/Layer_1.png",
-        "1": "/assets/csgo.announce/twitter/Layer_2.png",
-        "2": "/assets/csgo.announce/twitter/Layer_3/1.png"
+        "0": "/assets/csgo.result/twitter/Layer_1.png",
+        "1": "/assets/csgo.result/twitter/Layer_2/Defeat/1.png",
+        "2": "/assets/csgo.result/twitter/Layer_3/1.png"
       },
       "Fields": [
-        {
-          "Id": "hora",
-          "Type": "text",
-          "X": 590,
-          "Y": 505,
-          "Font": "48px HansonBold",
-          "Color": "white"
-        },
         {
           "Id": "campeonato",
           "Type": "text",

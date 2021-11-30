@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CanvasComponent } from './components/canvas/canvas.component';
 import { AnnouncementFormComponent } from './draw-banner/announcement-form.component';
+import { ResultFormComponent } from './draw-banner/result-form.component';
 import { DrawBannerComponent as DrawBannerComponent } from './draw-banner/draw-banner.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,6 +20,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 @NgModule({
   declarations: [
     AnnouncementFormComponent,
+    ResultFormComponent,
     CanvasComponent,
     AppComponent,
     DrawBannerComponent,

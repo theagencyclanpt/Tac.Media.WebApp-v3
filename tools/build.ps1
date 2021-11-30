@@ -22,7 +22,7 @@ $buildPath = "$buildPath/build"
 
 Set-Location "src/$projectName"
 
-dotnet publish Tac.Media.WebApp.csproj --output $buildPath
+dotnet publish --configuration Release --output $buildPath Tac.Media.WebApp.csproj
 
 Set-Location $buildPath
 
@@ -40,4 +40,11 @@ Compress-Archive -Path $files -DestinationPath $boundlePathAndName -CompressionL
 
 Set-Location ".."
 Remove-Item -Recurse -Force "build"
+
+Set-Location $boundlePath
+
+ls
+scp Tac.Media.WebApp.Boundle.zip agency@lab.theagencyclan.pt:/home/agency
+
+
 Set-Location $originalLocation
