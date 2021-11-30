@@ -75,14 +75,26 @@ const Configurations = {
         "Height": "580px",
       },
       "Overwrite": {
-        "ChangeLayer3ToVictoryLabel": {
-          "Id": "2",
-          "Value": "/assets/csgo.result/twitter/Layer_3/2.png"
-        },
-        "ChangeLayer3ToDefeatLabel": {
-          "Id": "2",
-          "Value": "/assets/csgo.result/twitter/Layer_3/1.png"
-        }
+        "ChangeLayer3ToVictoryLabel": [
+          {
+            "Id": "2",
+            "Value": "/assets/csgo.result/twitter/Layer_3/2.png"
+          },
+          {
+            "Id": "1",
+            "Value": "/assets/csgo.result/twitter/Layer_2/Defeat/4.png"
+          }
+        ],
+        "ChangeLayer3ToDefeatLabel": [
+          {
+            "Id": "2",
+            "Value": "/assets/csgo.result/twitter/Layer_3/1.png"
+          },
+          {
+            "Id": "1",
+            "Value": "/assets/csgo.result/twitter/Layer_2/Defeat/2.png"
+          }
+        ]
       },
       "Layers": {
         "0": "/assets/csgo.result/twitter/Layer_1.png",

@@ -36,6 +36,7 @@ export class CanvasComponent implements OnInit {
 
   private ctx: CanvasRenderingContext2D;
   public override: IPaint;
+  public overrideId: string;
 
   ngOnInit(): void {
     this.ctx = this.canvas.nativeElement.getContext('2d');
@@ -98,8 +99,9 @@ export class CanvasComponent implements OnInit {
     }
   }
 
-  public SetOverride(value: IPaint) {
+  public SetOverride(value: IPaint, id: string) {
     this.override = value;
+    this.overrideId = id;
     this.RenderByType();
   }
 
