@@ -22,6 +22,24 @@ const Configurations = {
           "Color": "white"
         },
         {
+          "Id": "team1Score",
+          "Type": "text",
+          "X": 270,
+          "Y": 1530,
+          "Font": "130px BebasNeueRegular",
+          "Color": "white",
+          "TextAlign": "start"
+        },
+        {
+          "Id": "team2Score",
+          "Type": "text",
+          "X": 565,
+          "Y": 1530,
+          "Font": "130px BebasNeueRegular",
+          "Color": "white",
+          "TextAlign": "end",
+        },
+        {
           "Id": "team1logo",
           "Type": "image",
           "X": 33,
@@ -40,8 +58,11 @@ const Configurations = {
         {
           "Id": "ligalogo",
           "Type": "image",
-          "X": 574,
-          "Y": 1421,
+          "X": 40,
+          "Y": 1230,
+          "Width": 500,
+          "Height": 160,
+          "ForceRenderX": true
         }
       ],
       "Overwrite": {
@@ -215,6 +236,9 @@ const Configurations = {
           "Type": "image",
           "X": 574,
           "Y": 1421,
+          "Width": 500,
+          "Height": 160,
+          "ForceRenderX": true
         }
       ],
       "Overwrite": {
@@ -246,7 +270,15 @@ const Configurations = {
             "Y": 1160,
             "Font": "48px HansonBold",
             "Color": "white",
-          }
+          },
+          {
+            "Id": "data",
+            "Type": "text",
+            "X": 520,
+            "Y": 1250,
+            "Font": "48px HansonBold",
+            "Color": "white"
+          },
         ]
       }
     },

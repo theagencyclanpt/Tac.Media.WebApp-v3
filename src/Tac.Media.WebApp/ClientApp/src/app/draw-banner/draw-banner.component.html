@@ -36,7 +36,7 @@
       <mat-icon aria-hidden="false">swap_horiz</mat-icon>
     </button>
   </div>
-  <div class="preview" [ngStyle]="{'display': isPreviewInstagram && !loadProcess ? 'flex' : 'none'}">
+  <div class="preview" [ngStyle]="{'display': isPreviewInstagram ? 'flex' : 'none'}">
     <tac-canvas #instagram [index]="i" [map]="instagramCanvasMapped[i]" (startLoad)="StartLoadCanvas($event)"
       (endLoad)="EndLoadCanvas($event)" *ngFor="let number of instagramCanvasMapped; let i = index"></tac-canvas>
   </div>

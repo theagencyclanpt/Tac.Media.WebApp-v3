@@ -239,7 +239,8 @@ export class DrawBannerComponent implements OnInit {
         Y: field.Y,
         Color: field.Color,
         Font: field.Font,
-        TextAlign: field.TextAlign
+        TextAlign: field.TextAlign,
+        ForceRenderX: field.ForceRenderX
       });
     });
 
@@ -270,7 +271,8 @@ export class DrawBannerComponent implements OnInit {
         Y: field.Y,
         Color: field.Color,
         Font: field.Font,
-        TextAlign: field.TextAlign
+        TextAlign: field.TextAlign,
+        ForceRenderX: field.ForceRenderX
       });
     });
   }

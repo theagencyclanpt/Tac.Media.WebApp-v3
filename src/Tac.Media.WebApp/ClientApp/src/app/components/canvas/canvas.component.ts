@@ -13,6 +13,7 @@ export interface IPaint {
   Color: string,
   Font: string,
   TextAlign: CanvasTextAlign,
+  ForceRenderX: boolean,
   Preview: {
     Width: string,
     Height: string,
@@ -74,13 +75,22 @@ export class CanvasComponent implements OnInit {
         img.onload = function () {
           if (map.Resolution && map.Resolution.Height && map.Resolution.Width) {
             let normalizeHeight = map.Resolution.Height * (img.height / img.width);
+            let normalizeWidth = normalizeHeight * (img.width / img.height);
 
             if (override && override.Width && override.Height && override.X && override.Y) {
               normalizeHeight = override.Height * (img.height / img.width);
-
-              ctx.drawImage(img, override.X, (override.Y + (override.Height / 2) - (normalizeHeight / 2)), override.Width, normalizeHeight);
+              normalizeWidth = normalizeHeight * (img.width / img.height);
+              if (map.ForceRenderX) {
+                ctx.drawImage(img, override.X, (override.Y + (override.Height / 2) - (normalizeHeight / 2)), normalizeWidth, normalizeHeight);
+              } else {
+                ctx.drawImage(img, (override.X + (override.Width / 2) - (normalizeWidth / 2)), (override.Y + (override.Height / 2) - (normalizeHeight / 2)), normalizeWidth, normalizeHeight);
+              }
             } else {
-              ctx.drawImage(img, map.X, (map.Y + (map.Resolution.Height / 2) - (normalizeHeight / 2)), map.Resolution.Width, normalizeHeight);
+              if (map.ForceRenderX) {
+                ctx.drawImage(img, map.X, (map.Y + (map.Resolution.Height / 2) - (normalizeHeight / 2)), normalizeWidth, normalizeHeight);
+              } else {
+                ctx.drawImage(img, (map.X + (map.Resolution.Width / 2) - (normalizeWidth / 2)), (map.Y + (map.Resolution.Height / 2) - (normalizeHeight / 2)), normalizeWidth, normalizeHeight);
+              }
             }
           } else {
             ctx.drawImage(img, map.X, map.Y);
