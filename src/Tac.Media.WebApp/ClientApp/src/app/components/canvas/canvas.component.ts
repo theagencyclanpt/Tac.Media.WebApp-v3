@@ -12,6 +12,7 @@ export interface IPaint {
   Value: any,
   Color: string,
   Font: string,
+  TextAlign: CanvasTextAlign,
   Preview: {
     Width: string,
     Height: string,
@@ -88,6 +89,10 @@ export class CanvasComponent implements OnInit {
           ctx.font = override.Font;
           ctx.fillText(value, override.X, override.Y);
         } else {
+          if (map.TextAlign) {
+            ctx.textAlign = map.TextAlign;
+          }
+
           ctx.fillStyle = map.Color;
           ctx.font = map.Font;
           ctx.fillText(value, map.X, map.Y);

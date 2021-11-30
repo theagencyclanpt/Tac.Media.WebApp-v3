@@ -105,34 +105,53 @@ const Configurations = {
         {
           "Id": "campeonato",
           "Type": "text",
-          "X": 605,
-          "Y": 795,
+          "X": 1265,
+          "Y": 610,
           "Font": "38px BebasNeueRegular",
-          "Color": "white"
+          "Color": "white",
+          "TextAlign": "end"
+        },
+        {
+          "Id": "team1Score",
+          "Type": "text",
+          "X": 1500,
+          "Y": 610,
+          "Font": "65px BebasNeueRegular",
+          "Color": "white",
+          "TextAlign": "start"
+        },
+        {
+          "Id": "team2Score",
+          "Type": "text",
+          "X": 1265,
+          "Y": 610,
+          "Font": "38px BebasNeueRegular",
+          "Color": "white",
+          "TextAlign": "end",
         },
         {
           "Id": "team1logo",
           "Type": "image",
-          "X": 44,
-          "Y": 704,
-          "Width": 160,
-          "Height": 160
+          "X": 1317,
+          "Y": 545,
+          "Width": 115,
+          "Height": 115
         },
         {
           "Id": "team2logo",
           "Type": "image",
-          "X": 374,
-          "Y": 704,
-          "Width": 160,
-          "Height": 160
+          "X": 1740,
+          "Y": 545,
+          "Width": 115,
+          "Height": 115
         },
         {
           "Id": "ligalogo",
           "Type": "image",
-          "X": 574,
-          "Y": 754,
-          "Width": 160,
-          "Height": 160
+          "X": 1157,
+          "Y": 570,
+          "Width": 115,
+          "Height": 115
         }
       ]
     }

@@ -24,6 +24,16 @@
       <mat-icon aria-hidden="false" *ngIf="form.get('ligalogo').value">close</mat-icon>
     </button>
   </div>
+  <div class="score">
+    <mat-form-field>
+      <mat-label>Team 1 Score</mat-label>
+      <input type="number" matInput formControlName="team1Score">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Team 2 Score</mat-label>
+      <input type="number" matInput formControlName="team2Score">
+    </mat-form-field>
+  </div>
   <mat-button-toggle-group class="full-width-field" name="fontStyle">
     <mat-button-toggle (click)="onClickResultState('victory')" [checked]="true" class="full-width-field">Victory
     </mat-button-toggle>

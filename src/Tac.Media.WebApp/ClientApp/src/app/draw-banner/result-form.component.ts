@@ -30,12 +30,12 @@ export class ResultFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      hora: new FormControl(''),
-      data: new FormControl(''),
       campeonato: new FormControl(''),
       ligalogo: new FormControl(''),
       team2logo: new FormControl(''),
       team1logo: new FormControl(''),
+      team1Score: new FormControl(''),
+      team2Score: new FormControl(''),
     });
 
     this.onChanges();
@@ -44,29 +44,14 @@ export class ResultFormComponent implements OnInit {
   onChanges(): void {
     this.form.get('campeonato').valueChanges.subscribe(val => {
       this.OnChangeForm.emit({ key: "campeonato", value: val });
-      if (val) {
-        this.LoadOverwrite.emit({ id: 2 })
-        this.LoadOverwrite.emit({ id: "team1logo" })
-        this.LoadOverwrite.emit({ id: "team2logo" })
-        this.LoadOverwrite.emit({ id: "hora" })
-      } else {
-        this.UnloadOverwrite.emit({ id: 2 });
-        this.UnloadOverwrite.emit({ id: "team1logo" })
-        this.UnloadOverwrite.emit({ id: "team2logo" })
-        this.UnloadOverwrite.emit({ id: "hora" })
-      }
     });
 
-    this.form.get('hora').valueChanges.subscribe((val: string) => {
-      this.OnChangeForm.emit({ key: "hora", value: val.replace(":", "H") });
+    this.form.get('team1Score').valueChanges.subscribe(val => {
+      this.OnChangeForm.emit({ key: "team1Score", value: val });
     });
 
-    this.form.get('data').valueChanges.subscribe((val: string) => {
-
-      const date = new Date(val);
-      const month = date.getUTCMonth() + 1;
-
-      this.OnChangeForm.emit({ key: "data", value: date.getUTCDate() + "/" + month });
+    this.form.get('team2Score').valueChanges.subscribe(val => {
+      this.OnChangeForm.emit({ key: "team2Score", value: val });
     });
   }
 

@@ -4,11 +4,20 @@
   width: 100%;
 }
 
-.form-side{
+.score{
   display: flex;
   flex-direction: row;
   width: 100%;
 }
+
+.score > .mat-form-field:first-child{
+  width: 50%;
+  margin-right: 10px;
+}
+
+.score > .mat-form-field:nth-child(2){
+  width: calc(50% - 10px);
+} 
 
 .upload-images{
   display: flex;
