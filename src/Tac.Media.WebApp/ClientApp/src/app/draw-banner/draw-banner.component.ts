@@ -22,6 +22,8 @@ export class DrawBannerComponent implements OnInit {
   public twitterCanvasMapped: Array<any> = [];
   public isPreviewInstagram = false;
   public isBannerResult: boolean = true;
+  public loadProcess: boolean = true;
+  private canvasLoad = []
 
   private _bannerMapped: any;
 
@@ -118,6 +120,23 @@ export class DrawBannerComponent implements OnInit {
           instagramCanvas.RemoveOverride();
         }
       });
+    }
+  }
+
+  public StartLoadCanvas(id) {
+    this.canvasLoad.push(id);
+    if (this.canvasLoad.length > 0) {
+      this.loadProcess = true;
+    }
+  }
+
+  public EndLoadCanvas(id) {
+    this.canvasLoad = this.canvasLoad.filter(function (item) {
+      return item !== id
+    });
+
+    if (this.canvasLoad.length == 0) {
+      this.loadProcess = false;
     }
   }
 

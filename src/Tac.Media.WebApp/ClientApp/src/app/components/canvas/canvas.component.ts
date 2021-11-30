@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
 
 export type IPaintType = "image" | "text";
 
@@ -35,6 +35,12 @@ export class CanvasComponent implements OnInit {
   @ViewChild('canvas', { static: true })
   canvas: ElementRef<HTMLCanvasElement>;
 
+  @Output("startLoad")
+  StartLoad = new EventEmitter<any>();
+
+  @Output("endLoad")
+  EndLoad = new EventEmitter<any>();
+
   private ctx: CanvasRenderingContext2D;
   public override: IPaint;
   public overrideId: string;
@@ -60,7 +66,8 @@ export class CanvasComponent implements OnInit {
         if (!map.Value) {
           return;
         }
-
+        this.StartLoad.emit(map.Id);
+        const endLoad = this.EndLoad;
         const img = new Image();
         img.src = override && override.Value ? override.Value : map.Value;
         img.crossOrigin = "anonymous";
@@ -78,6 +85,7 @@ export class CanvasComponent implements OnInit {
           } else {
             ctx.drawImage(img, map.X, map.Y);
           }
+          endLoad.emit(map.Id);
         };
         break;
 

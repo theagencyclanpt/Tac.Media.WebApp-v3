@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatInputModule,
     MatAutocompleteModule,
     MatIconModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

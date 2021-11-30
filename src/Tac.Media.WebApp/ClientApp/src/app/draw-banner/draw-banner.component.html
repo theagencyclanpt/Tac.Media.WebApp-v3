@@ -1,3 +1,7 @@
+<div *ngIf="loadProcess" class="loading">
+  <mat-spinner></mat-spinner>
+</div>
+
 <div class="layout">
   <div class="side-bar">
     <div class="side-bar__options">
@@ -32,13 +36,13 @@
       <mat-icon aria-hidden="false">swap_horiz</mat-icon>
     </button>
   </div>
-  <div class="preview" [ngStyle]="{'display': isPreviewInstagram ? 'flex' : 'none'}">
-    <tac-canvas #instagram [index]="i" [map]="instagramCanvasMapped[i]"
-      *ngFor="let number of instagramCanvasMapped; let i = index"></tac-canvas>
+  <div class="preview" [ngStyle]="{'display': isPreviewInstagram && !loadProcess ? 'flex' : 'none'}">
+    <tac-canvas #instagram [index]="i" [map]="instagramCanvasMapped[i]" (startLoad)="StartLoadCanvas($event)"
+      (endLoad)="EndLoadCanvas($event)" *ngFor="let number of instagramCanvasMapped; let i = index"></tac-canvas>
   </div>
   <div class="preview" [ngStyle]="{'display': isPreviewInstagram ? 'none' : 'flex'}">
-    <tac-canvas #twitter [index]="i" [map]="twitterCanvasMapped[i]"
-      *ngFor="let number of twitterCanvasMapped; let i = index"></tac-canvas>
+    <tac-canvas #twitter [index]="i" [map]="twitterCanvasMapped[i]" (startLoad)="StartLoadCanvas($event)"
+      (endLoad)="EndLoadCanvas($event)" *ngFor="let number of twitterCanvasMapped; let i = index"></tac-canvas>
   </div>
 </div>
 
