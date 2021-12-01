@@ -33,7 +33,8 @@ const Configurations = {
                 "Id": "1",
                 "Value": "/assets/result/instagram/Layer_2/csgo/Defeat/2.png"
               }
-            ]
+            ],
+            "ChangeLayer3ToDrawLabel": []
           }
         },
         "VALORANT": {
@@ -56,6 +57,16 @@ const Configurations = {
               {
                 "Id": "2",
                 "Value": "/assets/result/instagram/Layer_3/valorant/0.png"
+              },
+              {
+                "Id": "1",
+                "Value": "/assets/result/instagram/Layer_2/valorant/Defeat/1.png",
+              }
+            ],
+            "ChangeLayer3ToDrawLabel": [
+              {
+                "Id": "2",
+                "Value": "/assets/result/instagram/Layer_3/valorant/1.png"
               },
               {
                 "Id": "1",
@@ -115,26 +126,6 @@ const Configurations = {
         }
       ],
       "Overwrite": {
-        "ChangeLayer3ToVictoryLabel": [
-          {
-            "Id": "2",
-            "Value": "/assets/result/instagram/Layer_3/csgo/1.png"
-          },
-          {
-            "Id": "1",
-            "Value": "/assets/result/instagram/Layer_2/csgo/Victory/4.png"
-          }
-        ],
-        "ChangeLayer3ToDefeatLabel": [
-          {
-            "Id": "2",
-            "Value": "/assets/result/instagram/Layer_3/csgo/2.png"
-          },
-          {
-            "Id": "1",
-            "Value": "/assets/result/instagram/Layer_2/csgo/Defeat/2.png"
-          }
-        ]
       }
     },
     "Twitter": {
@@ -170,7 +161,8 @@ const Configurations = {
                 "Id": "1",
                 "Value": "/assets/result/twitter/Layer_2/csgo/Defeat/2.png"
               }
-            ]
+            ],
+            "ChangeLayer3ToDrawLabel": []
           }
         },
         "VALORANT": {
@@ -198,32 +190,21 @@ const Configurations = {
                 "Id": "1",
                 "Value": "/assets/result/twitter/Layer_2/valorant/Defeat/1.png",
               }
+            ],
+            "ChangeLayer3ToDrawLabel": [
+              {
+                "Id": "2",
+                "Value": "/assets/result/twitter/Layer_3/valorant/1.png"
+              },
+              {
+                "Id": "1",
+                "Value": "/assets/result/twitter/Layer_2/valorant/Defeat/1.png",
+              }
             ]
           }
         }
       },
-      "Overwrite": {
-        "ChangeLayer3ToVictoryLabel": [
-          {
-            "Id": "2",
-            "Value": "/assets/result/twitter/Layer_3/csgo/2.png"
-          },
-          {
-            "Id": "1",
-            "Value": "/assets/result/twitter/Layer_2/csgo/Victory/4.png"
-          }
-        ],
-        "ChangeLayer3ToDefeatLabel": [
-          {
-            "Id": "2",
-            "Value": "/assets/result/twitter/Layer_3/csgo/1.png"
-          },
-          {
-            "Id": "1",
-            "Value": "/assets/result/twitter/Layer_2/csgo/Defeat/2.png"
-          }
-        ]
-      },
+      "Overwrite": {},
       "Layers": {
         "0": "/assets/result/twitter/Layer_1.png",
         "1": "/assets/result/twitter/Layer_2/csgo/Victory/1.png",
@@ -437,45 +418,6 @@ const Configurations = {
         }
       ],
       "Overwrite": {
-        "ChangeToLayoutWithText": [
-          {
-            "Id": "2",
-            "Value": "/assets/announce/instagram/Layer_3/2.png"
-          },
-          {
-            "Id": "team1logo",
-            "Type": "image",
-            "X": 33,
-            "Y": 1381,
-            "Width": 200,
-            "Height": 200
-          },
-          {
-            "Id": "team2logo",
-            "Type": "image",
-            "X": 444,
-            "Y": 1381,
-            "Width": 200,
-            "Height": 200
-          },
-          {
-            "Id": "hora",
-            "Type": "text",
-            "X": 520,
-            "Y": 1160,
-            "Font": "48px HansonBold",
-            "Color": "white",
-          },
-          {
-            "Id": "data",
-            "Type": "text",
-            "X": 520,
-            "Y": 1250,
-            "Font": "48px HansonBold",
-            "Color": "white",
-            "IsStrokeText": true
-          },
-        ]
       }
     },
     "Twitter": {
@@ -516,12 +458,6 @@ const Configurations = {
         }
       },
       "Overwrite": {
-        "ChangeToLayoutWithText": [
-          {
-            "Id": "2",
-            "Value": "/assets/announce/twitter/Layer_3/2.png"
-          }
-        ]
       },
       "Layers": {
         "0": "/assets/announce/twitter/Layer_1.png",

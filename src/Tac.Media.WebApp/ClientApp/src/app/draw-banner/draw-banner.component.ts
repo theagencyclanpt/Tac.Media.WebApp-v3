@@ -26,6 +26,7 @@ export class DrawBannerComponent implements OnInit {
   public gameType = "CSGO";
   private canvasLoad = [];
   private formData = {};
+  private overrideCanvas = [];
 
   private _bannerMapped: any;
 
@@ -68,7 +69,10 @@ export class DrawBannerComponent implements OnInit {
 
     setTimeout(() => {
       this.LoadFormData();
-    }, 200);
+      this.overrideCanvas.forEach((overrideId) => {
+        this.LoadOverWrite({ id: overrideId });
+      });
+    }, 500);
   }
 
   private ApplyGameType() {
@@ -101,6 +105,7 @@ export class DrawBannerComponent implements OnInit {
     }
 
     this.formData = {};
+    this.overrideCanvas = [];
     this._bannerMapped = this.isBannerResult ? Configurations.Result : Configurations.Announcement;
     this.ApplyGameType();
     this.instagramCanvasMapped = [];
@@ -109,6 +114,7 @@ export class DrawBannerComponent implements OnInit {
   }
 
   public LoadOverWrite({ id }) {
+    this.overrideCanvas.push(id);
     const twitterOverwrite = this._bannerMapped.Twitter.Overwrite[id];
 
     if (twitterOverwrite) {
@@ -141,6 +147,8 @@ export class DrawBannerComponent implements OnInit {
   }
 
   public UnloadOverwrite({ id }) {
+    this.overrideCanvas = this.overrideCanvas.filter(e => e != id);
+
     const twitterOverwrite = this._bannerMapped.Twitter.Overwrite[id];
 
     if (twitterOverwrite) {

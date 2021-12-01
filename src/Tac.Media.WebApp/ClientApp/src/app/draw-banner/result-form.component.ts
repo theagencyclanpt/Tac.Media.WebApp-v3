@@ -108,6 +108,9 @@ export class ResultFormComponent implements OnInit {
       case "defeat":
         this.LoadOverwrite.emit({ id: "ChangeLayer3ToDefeatLabel" })
         break;
+      case "draw":
+        this.LoadOverwrite.emit({ id: "ChangeLayer3ToDrawLabel" })
+        break;
       default:
         break;
     }
