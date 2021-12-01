@@ -4,7 +4,7 @@
 
 <div class="layout">
   <div class="side-bar">
-    <div class="side-bar__options">
+    <div class="side-bar__options vertical">
       <mat-button-toggle-group class="full-width-field">
         <mat-button-toggle value="result" (click)="ChangeBanerType('result')" class="full-width-field"
           [checked]="isBannerResult">Resultado
@@ -13,6 +13,13 @@
           [checked]="!isBannerResult">Anuncio
         </mat-button-toggle>
       </mat-button-toggle-group>
+      <mat-form-field>
+        <mat-label>Tipo de Jogo</mat-label>
+        <mat-select [(ngModel)]="gameType" (ngModelChange)="HandlerChangeGameType($event)">
+          <mat-option value="CSGO">Counter Strike Global Offensive</mat-option>
+          <mat-option value="VALORANT">Valorant</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <div class="side-bar__options">
       <ng-container *ngIf="!isBannerResult">

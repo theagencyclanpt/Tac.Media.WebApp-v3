@@ -47,12 +47,21 @@ export class ResultFormComponent implements OnInit {
     });
 
     this.form.get('team1Score').valueChanges.subscribe(val => {
-      this.OnChangeForm.emit({ key: "team1Score", value: val });
+      this.OnChangeForm.emit({ key: "score", value: this.getScore() });
     });
 
     this.form.get('team2Score').valueChanges.subscribe(val => {
-      this.OnChangeForm.emit({ key: "team2Score", value: val });
+      this.OnChangeForm.emit({ key: "score", value: this.getScore() });
     });
+  }
+
+  private getScore() {
+    let team1Score = this.form.getRawValue()['team1Score'] as number;
+    team1Score = team1Score ? team1Score : 0;
+    let team2Score = this.form.getRawValue()['team2Score'] as number;
+    team2Score = team2Score ? team2Score : 0;
+
+    return team1Score + "-" + team2Score;
   }
 
   onFileChange(event, key) {

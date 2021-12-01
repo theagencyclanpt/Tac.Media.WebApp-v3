@@ -23,6 +23,7 @@ export class DrawBannerComponent implements OnInit {
   public isPreviewInstagram = false;
   public isBannerResult: boolean = true;
   public loadProcess: boolean = true;
+  public gameType = "CSGO";
   private canvasLoad = []
 
   private _bannerMapped: any;
@@ -46,6 +47,34 @@ export class DrawBannerComponent implements OnInit {
         twitterCanvas.Clear();
       }
     }
+  }
+
+  public HandlerChangeGameType(event) {
+    this.gameType = event;
+
+    this._bannerMapped.Instagram.Layers = {
+      ...this._bannerMapped.Instagram.Layers,
+      ...this._bannerMapped.Instagram.GameType[event].Layers
+    };
+
+    this._bannerMapped.Instagram.Overwrite = {
+      ...this._bannerMapped.Instagram.Overwrite,
+      ...this._bannerMapped.Instagram.GameType[event].Overwrite
+    }
+
+    this._bannerMapped.Twitter.Layers = {
+      ...this._bannerMapped.Twitter.Layers,
+      ...this._bannerMapped.Twitter.GameType[event].Layers
+    };
+
+    this._bannerMapped.Twitter.Overwrite = {
+      ...this._bannerMapped.Twitter.Overwrite,
+      ...this._bannerMapped.Twitter.GameType[event].Overwrite
+    }
+
+    this.instagramCanvasMapped = [];
+    this.twitterCanvasMapped = [];
+    this.MapCanvas();
   }
 
   public ChangeBanerType(type: string) {
@@ -241,7 +270,8 @@ export class DrawBannerComponent implements OnInit {
         Font: field.Font,
         TextAlign: field.TextAlign,
         ForceRenderX: field.ForceRenderX,
-        IsStrokeText: field.IsStrokeText
+        IsStrokeText: field.IsStrokeText,
+        Value: field.Value
       });
     });
 
@@ -274,7 +304,8 @@ export class DrawBannerComponent implements OnInit {
         Font: field.Font,
         TextAlign: field.TextAlign,
         ForceRenderX: field.ForceRenderX,
-        IsStrokeText: field.IsStrokeText
+        IsStrokeText: field.IsStrokeText,
+        Value: field.Value
       });
     });
   }

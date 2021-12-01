@@ -41,6 +41,14 @@
   background-color: #000080;
 }
 
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: #ffffff;
+}
+
+::ng-deep .mat-select-value {
+  color: slategray;
+}
+
 @font-face {
   font-family: BebasNeueRegular;
   src: url(/assets/fonts/BebasNeueRegular.ttf);
@@ -107,6 +115,14 @@
   display: flex;
   flex-direction: row;
   width: 100%;
+}
+
+.side-bar__options.vertical{
+  flex-direction: column;
+}
+
+.side-bar__options.vertical:first-child{
+  margin-bottom: 20px;
 }
 
 .side-bar__options.content{
