@@ -24,13 +24,23 @@ export class DrawBannerComponent implements OnInit {
   public isBannerResult: boolean = true;
   public loadProcess: boolean = true;
   public gameType = "CSGO";
-  private canvasLoad = []
+  private canvasLoad = [];
+  private formData = {};
 
   private _bannerMapped: any;
 
+  private LoadFormData() {
+    const _this = this;
+    Object.keys(this.formData).forEach((key) => {
+      _this.SetFormData({ key: key, value: _this.formData[key] });
+    })
+  }
+
   public SetFormData(event) {
-    const instagramCanvas = this.instagramCanvas.toArray().find(e => e.map.Id == event.key)
-    const twitterCanvas = this.twitterCanvas.toArray().find(e => e.map.Id == event.key)
+    const instagramCanvas = this.instagramCanvas.toArray().find(e => e.map.Id == event.key);
+    const twitterCanvas = this.twitterCanvas.toArray().find(e => e.map.Id == event.key);
+
+    this.formData[event.key] = event.value;
 
     if (instagramCanvas) {
       if (event.value) {
@@ -51,30 +61,36 @@ export class DrawBannerComponent implements OnInit {
 
   public HandlerChangeGameType(event) {
     this.gameType = event;
+    this.ApplyGameType();
+    this.instagramCanvasMapped = [];
+    this.twitterCanvasMapped = [];
+    this.MapCanvas();
 
+    setTimeout(() => {
+      this.LoadFormData();
+    }, 200);
+  }
+
+  private ApplyGameType() {
     this._bannerMapped.Instagram.Layers = {
       ...this._bannerMapped.Instagram.Layers,
-      ...this._bannerMapped.Instagram.GameType[event].Layers
+      ...this._bannerMapped.Instagram.GameType[this.gameType].Layers
     };
 
     this._bannerMapped.Instagram.Overwrite = {
       ...this._bannerMapped.Instagram.Overwrite,
-      ...this._bannerMapped.Instagram.GameType[event].Overwrite
+      ...this._bannerMapped.Instagram.GameType[this.gameType].Overwrite
     }
 
     this._bannerMapped.Twitter.Layers = {
       ...this._bannerMapped.Twitter.Layers,
-      ...this._bannerMapped.Twitter.GameType[event].Layers
+      ...this._bannerMapped.Twitter.GameType[this.gameType].Layers
     };
 
     this._bannerMapped.Twitter.Overwrite = {
       ...this._bannerMapped.Twitter.Overwrite,
-      ...this._bannerMapped.Twitter.GameType[event].Overwrite
+      ...this._bannerMapped.Twitter.GameType[this.gameType].Overwrite
     }
-
-    this.instagramCanvasMapped = [];
-    this.twitterCanvasMapped = [];
-    this.MapCanvas();
   }
 
   public ChangeBanerType(type: string) {
@@ -84,7 +100,9 @@ export class DrawBannerComponent implements OnInit {
       this.isBannerResult = false;
     }
 
+    this.formData = {};
     this._bannerMapped = this.isBannerResult ? Configurations.Result : Configurations.Announcement;
+    this.ApplyGameType();
     this.instagramCanvasMapped = [];
     this.twitterCanvasMapped = [];
     this.MapCanvas();
@@ -97,8 +115,6 @@ export class DrawBannerComponent implements OnInit {
 
       twitterOverwrite.forEach(overWrite => {
         const twitterCanvas = this.twitterCanvas.toArray().find(e => e.map.Id == overWrite.Id);
-        console.log(twitterCanvas);
-
         if (twitterCanvas && (!twitterCanvas.override || twitterCanvas.overrideId != id)) {
           twitterCanvas.SetOverride(
             overWrite,
@@ -131,7 +147,6 @@ export class DrawBannerComponent implements OnInit {
 
       twitterOverwrite.forEach(overWrite => {
         const twitterCanvas = this.twitterCanvas.toArray().find(e => e.map.Id == overWrite.Id);
-        console.log(twitterCanvas);
 
         if (twitterCanvas && (twitterCanvas.override && twitterCanvas.overrideId == id)) {
           twitterCanvas.RemoveOverride();
@@ -312,6 +327,7 @@ export class DrawBannerComponent implements OnInit {
 
   ngOnInit(): void {
     this._bannerMapped = this.isBannerResult ? Configurations.Result : Configurations.Announcement;
+    this.ApplyGameType();
     this.MapCanvas();
     this._ctx = this.canvasMain.nativeElement.getContext('2d');
   }

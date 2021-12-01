@@ -298,7 +298,40 @@ const Configurations = {
             "ChangeToLayoutWithText": [
               {
                 "Id": "2",
-                "Value": "/assets/announce/instagram/Layer_3/csgo/1.png"
+                "Value": "/assets/announce/instagram/Layer_3/csgo/2.png"
+              },
+              {
+                "Id": "team1logo",
+                "Type": "image",
+                "X": 33,
+                "Y": 1381,
+                "Width": 200,
+                "Height": 200
+              },
+              {
+                "Id": "team2logo",
+                "Type": "image",
+                "X": 444,
+                "Y": 1381,
+                "Width": 200,
+                "Height": 200
+              },
+              {
+                "Id": "hora",
+                "Type": "text",
+                "X": 520,
+                "Y": 1160,
+                "Font": "48px HansonBold",
+                "Color": "white",
+              },
+              {
+                "Id": "data",
+                "Type": "text",
+                "X": 520,
+                "Y": 1250,
+                "Font": "48px HansonBold",
+                "Color": "white",
+                "IsStrokeText": true
               },
             ]
           }
@@ -455,14 +488,14 @@ const Configurations = {
       "GameType": {
         "CSGO": {
           "Layers": {
-            "1": "/assets/announce/twitter/Layer_2/csgo/2.png",
+            "1": "/assets/announce/twitter/Layer_2/csgo/1.png",
             "2": "/assets/announce/twitter/Layer_3/csgo/1.png"
           },
           "Overwrite": {
             "ChangeToLayoutWithText": [
               {
                 "Id": "2",
-                "Value": "/assets/announce/twitter/Layer_3/csgo/1.png"
+                "Value": "/assets/announce/twitter/Layer_3/csgo/2.png"
               },
             ]
           }
@@ -492,8 +525,8 @@ const Configurations = {
       },
       "Layers": {
         "0": "/assets/announce/twitter/Layer_1.png",
-        "1": "/assets/announce/twitter/Layer_2.png",
-        "2": "/assets/announce/twitter/Layer_3/1.png"
+        "1": "/assets/announce/twitter/Layer_2/csgo/1.png",
+        "2": "/assets/announce/twitter/Layer_3/csgo/1.png"
       },
       "Fields": [
         {
