@@ -102,18 +102,18 @@ const Configurations = {
         {
           "Id": "team1logo",
           "Type": "image",
-          "X": 33,
-          "Y": 1421,
-          "Width": 160,
-          "Height": 160
+          "X": 45,
+          "Y": 1380,
+          "Width": 205,
+          "Height": 205
         },
         {
           "Id": "team2logo",
           "Type": "image",
-          "X": 360,
-          "Y": 1421,
-          "Width": 160,
-          "Height": 160
+          "X": 585,
+          "Y": 1380,
+          "Width": 205,
+          "Height": 205
         },
         {
           "Id": "ligalogo",
