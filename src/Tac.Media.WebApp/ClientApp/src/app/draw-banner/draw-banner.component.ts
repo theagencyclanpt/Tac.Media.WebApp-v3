@@ -97,7 +97,10 @@ export class DrawBannerComponent implements OnInit {
   public HandlerChangeGameType(event) {
     this.loadProcess = true;
     this.gameType = event;
-    this.ResultForm.resetResultType();
+
+    if (this.ResultForm) {
+      this.ResultForm.resetResultType();
+    }
 
     this.instagramCanvasMapped = [];
     this.twitterCanvasMapped = [];
