@@ -249,16 +249,15 @@ export class DrawBannerComponent implements OnInit {
     this.http.post("/api/banner/generate-url", {
       InstagramBase64: images.instagramImage.split(',')[1],
       TwitterBase64: images.twitterImage.split(',')[1]
-    }).subscribe(data => {
+    }).subscribe(async (data) => {
       const url = window.location.host + "/preview?id=" + data["guid"];
 
-      this._snackBar.open("Url gerada com sucesso", "", {
-        duration: 5000
-      });
+      const snackBarRef = this._snackBar.open(url, "Copy");
 
-      setTimeout(() => {
-        window.open(url, "_blank");
-      }, 1000);
+      this.copyText(url);
+      snackBarRef.onAction().subscribe(() => {
+        this.copyText(url);
+      });
 
       this.loadProcess = false;
     });
@@ -330,6 +329,20 @@ export class DrawBannerComponent implements OnInit {
         Y: 0
       });
     });
+  }
+
+  private copyText(val: string) {
+    let selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
   }
 
   private MapCanvas() {

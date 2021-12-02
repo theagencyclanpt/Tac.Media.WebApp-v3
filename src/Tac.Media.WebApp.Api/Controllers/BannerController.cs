@@ -58,7 +58,7 @@ namespace Tac.Media.WebApp.Api.Controllers
             }
             catch (Exception e)
             {
-                throw new Exception("Cant create direcotry.");
+                throw new Exception("Cant create direcotry: " + tempDirectory, e);
             }
 
             await SaveImageBase64OnTempDirectory(tempDirectory + "/instagram.png", request.InstagramBase64);
