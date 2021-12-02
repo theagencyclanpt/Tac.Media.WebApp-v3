@@ -74,8 +74,6 @@ const Configurations = {
       },
       "Layers": {
         "0": "/assets/result/instagram/Layer_1.png",
-        "1": "/assets/result/instagram/Layer_2/csgo/Victory/3.png",
-        "2": "/assets/result/instagram/Layer_3/csgo/1.png"
       },
       "Fields": [
         {
@@ -198,9 +196,7 @@ const Configurations = {
       },
       "Overwrite": {},
       "Layers": {
-        "0": "/assets/result/twitter/Layer_1.png",
-        "1": "/assets/result/twitter/Layer_2/csgo/Victory/1.png",
-        "2": "/assets/result/twitter/Layer_3/csgo/2.png"
+        "0": "/assets/result/twitter/Layer_1.png"
       },
       "Fields": [
         {
@@ -253,9 +249,7 @@ const Configurations = {
       "Width": 1080,
       "Height": 1920,
       "Layers": {
-        "0": "/assets/announce/instagram/Layer_1.png",
-        "1": "/assets/announce/instagram/Layer_2.png",
-        "2": "/assets/announce/instagram/Layer_3/1.png"
+        "0": "/assets/announce/instagram/Layer_1.png"
       },
       "GameType": {
         "CSGO": {
@@ -444,9 +438,7 @@ const Configurations = {
       "Overwrite": {
       },
       "Layers": {
-        "0": "/assets/announce/twitter/Layer_1.png",
-        "1": "/assets/announce/twitter/Layer_2/csgo/1.png",
-        "2": "/assets/announce/twitter/Layer_3/csgo/1.png"
+        "0": "/assets/announce/twitter/Layer_1.png"
       },
       "Fields": [
         {

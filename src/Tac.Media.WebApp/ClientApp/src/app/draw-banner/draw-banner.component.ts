@@ -93,40 +93,21 @@ export class DrawBannerComponent implements OnInit {
   public HandlerChangeGameType(event) {
     this.loadProcess = true;
     this.gameType = event;
-    this.ApplyGameType();
+
     this.instagramCanvasMapped = [];
     this.twitterCanvasMapped = [];
+
     this.MapCanvas();
 
-    setTimeout(() => {
-      this.LoadFormData();
-      this.overrideCanvas.forEach((overrideId) => {
-        this.LoadOverWrite({ id: overrideId });
-      });
-      this.loadProcess = false;
-    }, 500);
+    this.loadProcess = false;
   }
 
   private ApplyGameType() {
-    this._bannerMapped.Instagram.Layers = {
-      ...this._bannerMapped.Instagram.Layers,
-      ...this._bannerMapped.Instagram.GameType[this.gameType].Layers
-    };
+    Object.assign(this._bannerMapped.Instagram.Layers, this._bannerMapped.Instagram.GameType[this.gameType].Layers);
+    Object.assign(this._bannerMapped.Instagram.Overwrite, this._bannerMapped.Instagram.GameType[this.gameType].Overwrite);
 
-    this._bannerMapped.Instagram.Overwrite = {
-      ...this._bannerMapped.Instagram.Overwrite,
-      ...this._bannerMapped.Instagram.GameType[this.gameType].Overwrite
-    }
-
-    this._bannerMapped.Twitter.Layers = {
-      ...this._bannerMapped.Twitter.Layers,
-      ...this._bannerMapped.Twitter.GameType[this.gameType].Layers
-    };
-
-    this._bannerMapped.Twitter.Overwrite = {
-      ...this._bannerMapped.Twitter.Overwrite,
-      ...this._bannerMapped.Twitter.GameType[this.gameType].Overwrite
-    }
+    Object.assign(this._bannerMapped.Twitter.Layers, this._bannerMapped.Twitter.GameType[this.gameType].Layers);
+    Object.assign(this._bannerMapped.Twitter.Overwrite, this._bannerMapped.Twitter.GameType[this.gameType].Overwrite);
   }
 
   public ChangeBanerType(type: string) {
@@ -139,7 +120,6 @@ export class DrawBannerComponent implements OnInit {
     this.formData = {};
     this.overrideCanvas = [];
     this._bannerMapped = this.isBannerResult ? Configurations.Result : Configurations.Announcement;
-    this.ApplyGameType();
     this.instagramCanvasMapped = [];
     this.twitterCanvasMapped = [];
     this.MapCanvas();
@@ -346,6 +326,8 @@ export class DrawBannerComponent implements OnInit {
   }
 
   private MapCanvas() {
+    this.ApplyGameType();
+
     const instagramPreview = this.IsMobile() ? this.previewSettings.Instagram.Mobile : this.previewSettings.Instagram.Desktop;
 
     this.LoadLayer({
@@ -412,5 +394,15 @@ export class DrawBannerComponent implements OnInit {
     this.ApplyGameType();
     this.MapCanvas();
     this._ctx = this.canvasMain.nativeElement.getContext('2d');
+  }
+
+  ngAfterViewInit() {
+    this.instagramCanvas.changes.subscribe(t => {
+      this.LoadFormData();
+    });
+
+    this.twitterCanvas.changes.subscribe(t => {
+      this.LoadFormData();
+    })
   }
 }
