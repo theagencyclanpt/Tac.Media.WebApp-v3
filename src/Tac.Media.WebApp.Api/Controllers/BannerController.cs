@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Png;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Tac.Media.WebApp.Api.Configurations;
 using Tac.Media.WebApp.Api.Models;
@@ -26,12 +24,27 @@ namespace Tac.Media.WebApp.Api.Controllers
             _logger = logger;
             _bannerConfigurations = bannerConfigurations.Value;
         }
+        [HttpGet("preview-by-id")]
+        public async Task<GetPreviewByIdResult> GetPreviewById([FromQuery] string Id)
+        {
+            var tempDirectory = _bannerConfigurations.TempDir + "/" + Id;
+
+            if (Directory.Exists(tempDirectory))
+            {
+                return new GetPreviewByIdResult(
+                    await GetImageBase64FromDirectory(tempDirectory + "/twitter.png"),
+                    await GetImageBase64FromDirectory(tempDirectory + "/instagram.png")
+                );
+            }
+
+            return null;
+        }
 
         [HttpPost("generate-url")]
-        public GenerateBannerUrlResponse GenerateBannerUrlAsync(GenerateBannerUrlRequest request)
+        public async Task<GenerateBannerUrlResponse> GenerateBannerUrlAsync(GenerateBannerUrlRequest request)
         {
             var guid = Guid.NewGuid();
-            var tempDirectory = _bannerConfigurations.TempDir + "\\" + guid;
+            var tempDirectory = _bannerConfigurations.TempDir + "/" + guid;
 
             try
             {
@@ -48,26 +61,28 @@ namespace Tac.Media.WebApp.Api.Controllers
                 throw new Exception("Cant create direcotry.");
             }
 
-            SaveImageBase64OnTempDirectory(tempDirectory + "\\instagram.png", request.InstagramBase64);
-            SaveImageBase64OnTempDirectory(tempDirectory + "\\twitter.png", request.TwitterBase64);
+            await SaveImageBase64OnTempDirectory(tempDirectory + "/instagram.png", request.InstagramBase64);
+            await SaveImageBase64OnTempDirectory(tempDirectory + "/twitter.png", request.TwitterBase64);
 
-            return new GenerateBannerUrlResponse
-            {
-                Guid = guid.ToString()
-            };
+            return new GenerateBannerUrlResponse(guid.ToString());
         }
 
-        private void SaveImageBase64OnTempDirectory(string directory, string imageBase64)
+        private async Task SaveImageBase64OnTempDirectory(string directory, string imageBase64)
         {
             byte[] bytes = Convert.FromBase64String(imageBase64);
 
-            Image image;
-            using (MemoryStream ms = new MemoryStream(bytes))
-            {
-                image = Image.FromStream(ms);
-            }
 
-            image.Save(directory, System.Drawing.Imaging.ImageFormat.Png);
+            using (var image = Image.Load(bytes))
+            {
+                 await image.SaveAsPngAsync(directory);
+            }
+        }
+
+        private async Task<string> GetImageBase64FromDirectory(string directory)
+        {
+            var t = await Image.LoadAsync(directory);
+
+            return t.ToBase64String(PngFormat.Instance);
         }
     }
 }

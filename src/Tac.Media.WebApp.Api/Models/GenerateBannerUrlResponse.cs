@@ -2,6 +2,11 @@
 {
     public class GenerateBannerUrlResponse
     {
-        public string Guid { get; set; }
+        public GenerateBannerUrlResponse(string guid)
+        {
+            Guid = guid;
+        }
+
+        public string Guid { get; }
     }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, QueryList, ViewChildren, ViewChild, ElementRef } fro
 import { HttpClient } from '@angular/common/http';
 import { CanvasComponent } from '../components/canvas/canvas.component';
 import { Configurations } from "./banner-configurations";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-draw-banner-component',
@@ -52,7 +53,8 @@ export class DrawBannerComponent implements OnInit {
     }
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private _snackBar: MatSnackBar) { }
 
   public IsMobile() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -248,7 +250,16 @@ export class DrawBannerComponent implements OnInit {
       InstagramBase64: images.instagramImage.split(',')[1],
       TwitterBase64: images.twitterImage.split(',')[1]
     }).subscribe(data => {
-      console.log(data);
+      const url = window.location.host + "/preview?id=" + data["guid"];
+
+      this._snackBar.open("Url gerada com sucesso", "", {
+        duration: 5000
+      });
+
+      setTimeout(() => {
+        window.open(url, "_blank");
+      }, 1000);
+
       this.loadProcess = false;
     });
   }
