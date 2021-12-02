@@ -1,4 +1,5 @@
 import { Component, OnInit, QueryList, ViewChildren, ViewChild, ElementRef } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { CanvasComponent } from '../components/canvas/canvas.component';
 import { Configurations } from "./banner-configurations";
 
@@ -51,9 +52,9 @@ export class DrawBannerComponent implements OnInit {
     }
   }
 
-  public IsMobile() {
-    console.log(this.previewSettings.Twitter.Mobile);
+  constructor(private http: HttpClient) { }
 
+  public IsMobile() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   }
 
@@ -221,7 +222,38 @@ export class DrawBannerComponent implements OnInit {
     }
   }
 
-  public async GetImage(): Promise<void> {
+  public async HandlerDownload() {
+    this.loadProcess = true;
+
+    const images = await this.GetImages();
+
+    var link = document.createElement('a');
+    link.download = 'instagram.png';
+    link.href = images.instagramImage;
+    link.click();
+
+    link.download = 'twitter.png';
+    link.href = images.twitterImage
+    link.click();
+
+    this.loadProcess = false;
+  }
+
+  public async HandlerGenerateUrl() {
+    this.loadProcess = true;
+
+    const images = await this.GetImages();
+
+    this.http.post("/api/banner/generate-url", {
+      InstagramBase64: images.instagramImage.split(',')[1],
+      TwitterBase64: images.twitterImage.split(',')[1]
+    }).subscribe(data => {
+      console.log(data);
+      this.loadProcess = false;
+    });
+  }
+
+  public async GetImages(): Promise<{ twitterImage: string, instagramImage: string }> {
     this.loadProcess = true;
     const ctx = this._ctx;
     const canvasMain = this.canvasMain.nativeElement;
@@ -261,16 +293,10 @@ export class DrawBannerComponent implements OnInit {
 
     const twitterImage = canvasMain.toDataURL();
 
-    var link = document.createElement('a');
-    link.download = 'instagram.png';
-    link.href = instagramImage
-    link.click();
-
-    link.download = 'twitter.png';
-    link.href = twitterImage
-    link.click();
-
-    this.loadProcess = false;
+    return {
+      twitterImage: twitterImage,
+      instagramImage: instagramImage
+    }
   }
 
   public TooglePreview() {

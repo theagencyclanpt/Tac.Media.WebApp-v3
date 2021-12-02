@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Reflection;
+using Tac.Media.WebApp.Api.Configurations;
 
 namespace Tac.Media.WebApp
 {
@@ -27,6 +28,9 @@ namespace Tac.Media.WebApp
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+
+            services.Configure<BannerConfigurations>(Configuration.GetSection("BannerConfigurations"));
 
             services
                 .AddMvc()
