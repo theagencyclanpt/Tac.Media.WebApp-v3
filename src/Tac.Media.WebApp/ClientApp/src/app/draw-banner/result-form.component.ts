@@ -27,6 +27,7 @@ export class ResultFormComponent implements OnInit {
   uploadLogoTeam1: ElementRef<HTMLInputElement>;
 
   form: FormGroup;
+  public selectedVal: string;
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -38,6 +39,7 @@ export class ResultFormComponent implements OnInit {
       team2Score: new FormControl(''),
     });
 
+    this.selectedVal = 'victory';
     this.onChanges();
   }
 
@@ -62,6 +64,10 @@ export class ResultFormComponent implements OnInit {
     team2Score = team2Score ? team2Score : 0;
 
     return team1Score + "-" + team2Score;
+  }
+
+  resetResultType() {
+    this.selectedVal = 'victory';
   }
 
   onFileChange(event, key) {
@@ -101,6 +107,8 @@ export class ResultFormComponent implements OnInit {
   }
 
   onClickResultState(key: string) {
+    this.selectedVal = key;
+
     switch (key) {
       case "victory":
         this.LoadOverwrite.emit({ id: "ChangeLayer3ToVictoryLabel" })

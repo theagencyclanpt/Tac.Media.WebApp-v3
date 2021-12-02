@@ -28,7 +28,7 @@
           </tac-announcement-form>
         </ng-container>
         <ng-container *ngIf="isBannerResult">
-          <tac-result-form (onChangeForm)="SetFormData($event)" (loadOverwrite)="LoadOverWrite($event)"
+          <tac-result-form #resultForm (onChangeForm)="SetFormData($event)" (loadOverwrite)="LoadOverWrite($event)"
             (unloadOverwrite)="UnloadOverwrite($event)">
           </tac-result-form>
         </ng-container>

@@ -34,10 +34,15 @@
       <input type="number" matInput formControlName="team2Score">
     </mat-form-field>
   </div>
-  <mat-button-toggle-group class="full-width-field" name="fontStyle">
-    <mat-button-toggle (click)="onClickResultState('victory')" [checked]="true" class="full-width-field">Victory
+  <mat-button-toggle-group #group="matButtonToggleGroup" [value]="selectedVal"
+    (change)="onClickResultState(group.value)" class="full-width-field" name="fontStyle">
+    <mat-button-toggle value="victory" class="full-width-field">
+      Victory
     </mat-button-toggle>
-    <mat-button-toggle (click)="onClickResultState('draw')" class="full-width-field">Draw</mat-button-toggle>
-    <mat-button-toggle (click)="onClickResultState('defeat')" class="full-width-field">Defeat</mat-button-toggle>
+    <mat-button-toggle value="draw" class="full-width-field">Draw
+    </mat-button-toggle>
+    <mat-button-toggle value="defeat" class="full-width-field">
+      Defeat
+    </mat-button-toggle>
   </mat-button-toggle-group>
 </form>

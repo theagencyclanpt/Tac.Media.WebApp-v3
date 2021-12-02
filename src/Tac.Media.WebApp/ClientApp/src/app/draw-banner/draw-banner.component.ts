@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CanvasComponent } from '../components/canvas/canvas.component';
 import { Configurations } from "./banner-configurations";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ResultFormComponent } from './result-form.component';
 
 @Component({
   selector: 'app-draw-banner-component',
@@ -18,6 +19,9 @@ export class DrawBannerComponent implements OnInit {
 
   @ViewChild('canvasMain', { static: true })
   canvasMain: ElementRef<HTMLCanvasElement>
+
+  @ViewChild(ResultFormComponent, { static: false })
+  ResultForm: ResultFormComponent;
 
   private _ctx: CanvasRenderingContext2D;
   public instagramCanvasMapped: Array<any> = [];
@@ -93,6 +97,7 @@ export class DrawBannerComponent implements OnInit {
   public HandlerChangeGameType(event) {
     this.loadProcess = true;
     this.gameType = event;
+    this.ResultForm.resetResultType();
 
     this.instagramCanvasMapped = [];
     this.twitterCanvasMapped = [];
