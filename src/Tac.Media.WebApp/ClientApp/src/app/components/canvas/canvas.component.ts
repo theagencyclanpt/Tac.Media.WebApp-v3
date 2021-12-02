@@ -52,6 +52,12 @@ export class CanvasComponent implements OnInit {
     this.RenderByType();
   }
 
+  calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
+    var ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
+    console.log(ratio);
+    return { width: srcWidth * ratio, height: srcHeight * ratio };
+  }
+
   private RenderByType(value = null) {
     const ctx = this.ctx;
     const map = this.map;
@@ -73,24 +79,23 @@ export class CanvasComponent implements OnInit {
         const img = new Image();
         img.src = override && override.Value ? override.Value : map.Value;
         img.crossOrigin = "anonymous";
-        img.onload = function () {
+        img.onload = () => {
           if (map.Resolution && map.Resolution.Height && map.Resolution.Width) {
-            let normalizeHeight = map.Resolution.Height * (img.height / img.width);
-            let normalizeWidth = normalizeHeight * (img.width / img.height);
+            let normalizeSize = this.calculateAspectRatioFit(img.width, img.height, map.Resolution.Width, map.Resolution.Height);
 
             if (override && override.Width && override.Height && override.X && override.Y) {
-              normalizeHeight = override.Height * (img.height / img.width);
-              normalizeWidth = normalizeHeight * (img.width / img.height);
+              normalizeSize = this.calculateAspectRatioFit(img.width, img.height, override.Width, override.Height);
+
               if (map.ForceRenderX) {
-                ctx.drawImage(img, override.X, (override.Y + (override.Height / 2) - (normalizeHeight / 2)), normalizeWidth, normalizeHeight);
+                ctx.drawImage(img, override.X, (override.Y + (override.Height / 2) - (normalizeSize.height / 2)), normalizeSize.width, normalizeSize.height);
               } else {
-                ctx.drawImage(img, (override.X + (override.Width / 2) - (normalizeWidth / 2)), (override.Y + (override.Height / 2) - (normalizeHeight / 2)), normalizeWidth, normalizeHeight);
+                ctx.drawImage(img, (override.X + (override.Width / 2) - (normalizeSize.width / 2)), (override.Y + (override.Height / 2) - (normalizeSize.height / 2)), normalizeSize.width, normalizeSize.height);
               }
             } else {
               if (map.ForceRenderX) {
-                ctx.drawImage(img, map.X, (map.Y + (map.Resolution.Height / 2) - (normalizeHeight / 2)), normalizeWidth, normalizeHeight);
+                ctx.drawImage(img, map.X, (map.Y + (map.Resolution.Height / 2) - (normalizeSize.height / 2)), normalizeSize.width, normalizeSize.height);
               } else {
-                ctx.drawImage(img, (map.X + (map.Resolution.Width / 2) - (normalizeWidth / 2)), (map.Y + (map.Resolution.Height / 2) - (normalizeHeight / 2)), normalizeWidth, normalizeHeight);
+                ctx.drawImage(img, (map.X + (map.Resolution.Width / 2) - (normalizeSize.width / 2)), (map.Y + (map.Resolution.Height / 2) - (normalizeSize.height / 2)), normalizeSize.width, normalizeSize.height);
               }
             }
           } else {

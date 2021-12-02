@@ -104,7 +104,10 @@ export class DrawBannerComponent implements OnInit {
 
     this.MapCanvas();
 
-    this.loadProcess = false;
+    setTimeout(() => {
+      this.LoadFormData();
+      this.loadProcess = false;
+    }, 200);
   }
 
   private ApplyGameType() {
@@ -399,15 +402,5 @@ export class DrawBannerComponent implements OnInit {
     this.ApplyGameType();
     this.MapCanvas();
     this._ctx = this.canvasMain.nativeElement.getContext('2d');
-  }
-
-  ngAfterViewInit() {
-    this.instagramCanvas.changes.subscribe(t => {
-      this.LoadFormData();
-    });
-
-    this.twitterCanvas.changes.subscribe(t => {
-      this.LoadFormData();
-    })
   }
 }
