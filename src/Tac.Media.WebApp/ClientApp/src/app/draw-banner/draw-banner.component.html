@@ -1,5 +1,6 @@
-<!-- <div *ngIf="loadProcess" class="loader">Loading...</div> -->
-
+<div *ngIf="loadProcess" class="loading">
+  <mat-spinner></mat-spinner>
+</div>
 <ng-container *ngIf="!IsMobile()">
   <div class="layout">
     <div class="side-bar">

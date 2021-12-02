@@ -222,6 +222,7 @@ export class DrawBannerComponent implements OnInit {
   }
 
   public async GetImage(): Promise<void> {
+    this.loadProcess = true;
     const ctx = this._ctx;
     const canvasMain = this.canvasMain.nativeElement;
     canvasMain.width = this._bannerMapped.Instagram.Width;
@@ -268,6 +269,8 @@ export class DrawBannerComponent implements OnInit {
     link.download = 'twitter.png';
     link.href = twitterImage
     link.click();
+
+    this.loadProcess = false;
   }
 
   public TooglePreview() {
