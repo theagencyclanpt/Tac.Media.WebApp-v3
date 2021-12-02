@@ -27,8 +27,35 @@ export class DrawBannerComponent implements OnInit {
   private canvasLoad = [];
   private formData = {};
   private overrideCanvas = [];
-
   private _bannerMapped: any;
+  public previewSettings = {
+    Instagram: {
+      Desktop: {
+        Width: "400px",
+        Height: "704px"
+      },
+      Mobile: {
+        Width: window.innerWidth / 3 + "px",
+        Height: window.innerHeight / 3 + "px"
+      }
+    },
+    Twitter: {
+      Desktop: {
+        Width: "979px",
+        Height: "580px"
+      },
+      Mobile: {
+        Width: window.innerWidth + "px",
+        Height: window.innerHeight / 3 + "px"
+      }
+    }
+  }
+
+  public IsMobile() {
+    console.log(this.previewSettings.Twitter.Mobile);
+
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  }
 
   private LoadFormData() {
     const _this = this;
@@ -61,6 +88,7 @@ export class DrawBannerComponent implements OnInit {
   }
 
   public HandlerChangeGameType(event) {
+    this.loadProcess = true;
     this.gameType = event;
     this.ApplyGameType();
     this.instagramCanvasMapped = [];
@@ -72,6 +100,7 @@ export class DrawBannerComponent implements OnInit {
       this.overrideCanvas.forEach((overrideId) => {
         this.LoadOverWrite({ id: overrideId });
       });
+      this.loadProcess = false;
     }, 500);
   }
 
@@ -264,22 +293,18 @@ export class DrawBannerComponent implements OnInit {
   }
 
   private MapCanvas() {
+    const instagramPreview = this.IsMobile() ? this.previewSettings.Instagram.Mobile : this.previewSettings.Instagram.Desktop;
+
     this.LoadLayer({
       Width: this._bannerMapped.Instagram.Width,
       Height: this._bannerMapped.Instagram.Height,
-      Preview: {
-        Width: this._bannerMapped.Instagram.Preview.Width,
-        Height: this._bannerMapped.Instagram.Preview.Height,
-      }
+      Preview: instagramPreview,
     }, this._bannerMapped.Instagram.Layers, this.instagramCanvasMapped);
 
     this._bannerMapped.Instagram.Fields.forEach((field) => {
       this.instagramCanvasMapped.push({
         Id: field.Id,
-        Preview: {
-          Width: this._bannerMapped.Instagram.Preview.Width,
-          Height: this._bannerMapped.Instagram.Preview.Height,
-        },
+        Preview: instagramPreview,
         Resolution: {
           Width: field.Width,
           Height: field.Height
@@ -298,22 +323,18 @@ export class DrawBannerComponent implements OnInit {
       });
     });
 
+    const twitterPreview = this.IsMobile() ? this.previewSettings.Twitter.Mobile : this.previewSettings.Twitter.Desktop;
+
     this.LoadLayer({
       Width: this._bannerMapped.Twitter.Width,
       Height: this._bannerMapped.Twitter.Height,
-      Preview: {
-        Width: this._bannerMapped.Twitter.Preview.Width,
-        Height: this._bannerMapped.Twitter.Preview.Height,
-      }
+      Preview: twitterPreview,
     }, this._bannerMapped.Twitter.Layers, this.twitterCanvasMapped);
 
     this._bannerMapped.Twitter.Fields.forEach((field) => {
       this.twitterCanvasMapped.push({
         Id: field.Id,
-        Preview: {
-          Width: this._bannerMapped.Twitter.Preview.Width,
-          Height: this._bannerMapped.Twitter.Preview.Height,
-        },
+        Preview: twitterPreview,
         Resolution: {
           Width: field.Width,
           Height: field.Height

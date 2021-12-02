@@ -1,10 +1,6 @@
 const Configurations = {
   "Result": {
     "Instagram": {
-      "Preview": {
-        "Width": "400px",
-        "Height": "704px",
-      },
       "Width": 1080,
       "Height": 1920,
       "GameType": {
@@ -131,10 +127,6 @@ const Configurations = {
     "Twitter": {
       "Width": 1920,
       "Height": 1080,
-      "Preview": {
-        "Width": "979px",
-        "Height": "580px",
-      },
       "GameType": {
         "CSGO": {
           "Layers": {
@@ -258,10 +250,6 @@ const Configurations = {
   },
   "Announcement": {
     "Instagram": {
-      "Preview": {
-        "Width": "400px",
-        "Height": "704px",
-      },
       "Width": 1080,
       "Height": 1920,
       "Layers": {
@@ -423,10 +411,6 @@ const Configurations = {
     "Twitter": {
       "Width": 1920,
       "Height": 1080,
-      "Preview": {
-        "Width": "979px",
-        "Height": "580px",
-      },
       "GameType": {
         "CSGO": {
           "Layers": {

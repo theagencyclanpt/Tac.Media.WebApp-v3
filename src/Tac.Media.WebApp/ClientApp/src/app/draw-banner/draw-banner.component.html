@@ -1,27 +1,96 @@
-<div *ngIf="loadProcess" class="loading">
-  <mat-spinner></mat-spinner>
-</div>
+<!-- <div *ngIf="loadProcess" class="loader">Loading...</div> -->
 
-<div class="layout">
-  <div class="side-bar">
-    <div class="side-bar__options vertical">
-      <mat-button-toggle-group class="full-width-field">
-        <mat-button-toggle value="result" (click)="ChangeBanerType('result')" class="full-width-field"
-          [checked]="isBannerResult">Resultado
-        </mat-button-toggle>
-        <mat-button-toggle value="announcement" (click)="ChangeBanerType('announcement')" class="full-width-field"
-          [checked]="!isBannerResult">Anuncio
-        </mat-button-toggle>
-      </mat-button-toggle-group>
-      <mat-form-field>
-        <mat-label>Tipo de Jogo</mat-label>
-        <mat-select [(ngModel)]="gameType" (ngModelChange)="HandlerChangeGameType($event)">
-          <mat-option value="CSGO">Counter Strike Global Offensive</mat-option>
-          <mat-option value="VALORANT">Valorant</mat-option>
-        </mat-select>
-      </mat-form-field>
+<ng-container *ngIf="!IsMobile()">
+  <div class="layout">
+    <div class="side-bar">
+      <div class="side-bar__options vertical">
+        <mat-button-toggle-group class="full-width-field">
+          <mat-button-toggle value="result" (click)="ChangeBanerType('result')" class="full-width-field"
+            [checked]="isBannerResult">Resultado
+          </mat-button-toggle>
+          <mat-button-toggle value="announcement" (click)="ChangeBanerType('announcement')" class="full-width-field"
+            [checked]="!isBannerResult">Anuncio
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+        <mat-form-field>
+          <mat-label>Tipo de Jogo</mat-label>
+          <mat-select [(ngModel)]="gameType" (ngModelChange)="HandlerChangeGameType($event)">
+            <mat-option value="CSGO">Counter Strike Global Offensive</mat-option>
+            <mat-option value="VALORANT">Valorant</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="side-bar__options">
+        <ng-container *ngIf="!isBannerResult">
+          <tac-announcement-form (onChangeForm)="SetFormData($event)" (loadOverwrite)="LoadOverWrite($event)"
+            (unloadOverwrite)="UnloadOverwrite($event)">
+          </tac-announcement-form>
+        </ng-container>
+        <ng-container *ngIf="isBannerResult">
+          <tac-result-form (onChangeForm)="SetFormData($event)" (loadOverwrite)="LoadOverWrite($event)"
+            (unloadOverwrite)="UnloadOverwrite($event)">
+          </tac-result-form>
+        </ng-container>
+      </div>
+      <div class="side-bar__options side-bar__options-buttons">
+        <button mat-raised-button (click)="GetImage()">Download</button>
+        <button mat-raised-button [disabled]="true">Url</button>
+      </div>
     </div>
-    <div class="side-bar__options">
+    <div class="side-bar__preview">
+      <button mat-raised-button (click)="TooglePreview()">
+        <mat-icon aria-hidden="false">swap_horiz</mat-icon>
+      </button>
+    </div>
+    <div class="preview" [ngStyle]="{'display': isPreviewInstagram ? 'flex' : 'none'}">
+      <tac-canvas #instagram [index]="i" [map]="instagramCanvasMapped[i]" (startLoad)="StartLoadCanvas($event)"
+        (endLoad)="EndLoadCanvas($event)" *ngFor="let number of instagramCanvasMapped; let i = index"></tac-canvas>
+    </div>
+    <div class="preview" [ngStyle]="{'display': isPreviewInstagram ? 'none' : 'flex'}">
+      <tac-canvas #twitter [index]="i" [map]="twitterCanvasMapped[i]" (startLoad)="StartLoadCanvas($event)"
+        (endLoad)="EndLoadCanvas($event)" *ngFor="let number of twitterCanvasMapped; let i = index"></tac-canvas>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="IsMobile()">
+  <div class="layout-mobile">
+
+    <div class="preview"
+      [ngStyle]="{'display': isPreviewInstagram ? 'flex' : 'none', 'height': previewSettings.Twitter.Mobile.Height, 'width': previewSettings.Twitter.Mobile.Width}">
+      <tac-canvas #instagram [index]="i" [map]="instagramCanvasMapped[i]" (startLoad)="StartLoadCanvas($event)"
+        (endLoad)="EndLoadCanvas($event)" *ngFor="let number of instagramCanvasMapped; let i = index"></tac-canvas>
+    </div>
+    <div class="preview"
+      [ngStyle]="{'display': isPreviewInstagram ? 'none' : 'flex', 'height': previewSettings.Twitter.Mobile.Height, 'width': previewSettings.Twitter.Mobile.Width}">
+      <tac-canvas #twitter [index]="i" [map]="twitterCanvasMapped[i]" (startLoad)="StartLoadCanvas($event)"
+        (endLoad)="EndLoadCanvas($event)" *ngFor="let number of twitterCanvasMapped; let i = index"></tac-canvas>
+    </div>
+    <div class="layout-mobile__content">
+      <div>
+        <button mat-raised-button (click)="TooglePreview()">
+          <mat-icon aria-hidden="false">swap_horiz</mat-icon>
+        </button>
+      </div>
+
+      <div class="full-width-field">
+        <mat-form-field class="full-width-field">
+          <mat-label>Tipo de Jogo</mat-label>
+          <mat-select [(ngModel)]="gameType" (ngModelChange)="HandlerChangeGameType($event)">
+            <mat-option value="CSGO">Counter Strike Global Offensive</mat-option>
+            <mat-option value="VALORANT">Valorant</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-button-toggle-group class="full-width-field">
+          <mat-button-toggle value="result" (click)="ChangeBanerType('result')" class="full-width-field"
+            [checked]="isBannerResult">Resultado
+          </mat-button-toggle>
+          <mat-button-toggle value="announcement" (click)="ChangeBanerType('announcement')" class="full-width-field"
+            [checked]="!isBannerResult">Anuncio
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+
+      </div>
+
       <ng-container *ngIf="!isBannerResult">
         <tac-announcement-form (onChangeForm)="SetFormData($event)" (loadOverwrite)="LoadOverWrite($event)"
           (unloadOverwrite)="UnloadOverwrite($event)">
@@ -32,25 +101,14 @@
           (unloadOverwrite)="UnloadOverwrite($event)">
         </tac-result-form>
       </ng-container>
+
+      <div>
+        <button mat-raised-button (click)="GetImage()">Download</button>
+      </div>
     </div>
-    <div class="side-bar__options side-bar__options-buttons">
-      <button mat-raised-button (click)="GetImage()">Download</button>
-      <button mat-raised-button [disabled]="true">Url</button>
-    </div>
+
+
   </div>
-  <div class="side-bar__preview">
-    <button mat-raised-button (click)="TooglePreview()">
-      <mat-icon aria-hidden="false">swap_horiz</mat-icon>
-    </button>
-  </div>
-  <div class="preview" [ngStyle]="{'display': isPreviewInstagram ? 'flex' : 'none'}">
-    <tac-canvas #instagram [index]="i" [map]="instagramCanvasMapped[i]" (startLoad)="StartLoadCanvas($event)"
-      (endLoad)="EndLoadCanvas($event)" *ngFor="let number of instagramCanvasMapped; let i = index"></tac-canvas>
-  </div>
-  <div class="preview" [ngStyle]="{'display': isPreviewInstagram ? 'none' : 'flex'}">
-    <tac-canvas #twitter [index]="i" [map]="twitterCanvasMapped[i]" (startLoad)="StartLoadCanvas($event)"
-      (endLoad)="EndLoadCanvas($event)" *ngFor="let number of twitterCanvasMapped; let i = index"></tac-canvas>
-  </div>
-</div>
+</ng-container>
 
 <canvas #canvasMain style="display: none;"></canvas>
