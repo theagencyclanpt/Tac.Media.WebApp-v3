@@ -6,5 +6,17 @@
   <h1>Não existe nenhum preview com esse id!</h1>
 </ng-container>
 
-<img #twitterImg>
-<img #instagramImg>
+<div class="layout">
+  <div class="content">
+    <div id="instagramImage">
+      <img #instagramImg>
+    </div>
+    <div id="twitterImage">
+      <img #twitterImg>
+    </div>
+  </div>
+  <div class="button-action">
+    <button mat-raised-button (click)="HandlerDownload()">Download</button>
+    <!-- <button mat-raised-button>Url</button> -->
+  </div>
+</div>

@@ -48,4 +48,15 @@ export class PreviewComponent implements OnInit {
         });
     }
   }
+
+  public async HandlerDownload() {
+    var link = document.createElement('a');
+    link.download = 'instagram.png';
+    link.href = this.instagramImg.nativeElement.src;
+    link.click();
+
+    link.download = 'twitter.png';
+    link.href = this.twitterImg.nativeElement.src
+    link.click();
+  }
 }
