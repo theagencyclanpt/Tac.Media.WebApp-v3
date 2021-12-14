@@ -5,8 +5,27 @@ const Configurations = {
       "Height": 1920,
       "GameType": {
         "CSGO": {
+          "RandomLayer": {
+            "ChangeLayer3ToVictoryLabel": {
+              "LayerId": 1,
+              "LayerMap": [
+                "/assets/result/instagram/Layer_2/csgo/Victory/1.png",
+                "/assets/result/instagram/Layer_2/csgo/Victory/2.png",
+                "/assets/result/instagram/Layer_2/csgo/Victory/3.png",
+                "/assets/result/instagram/Layer_2/csgo/Victory/4.png"
+              ]
+            },
+            "ChangeLayer3ToDefeatLabel": {
+              "LayerId": 1,
+              "LayerMap": [
+                "/assets/result/instagram/Layer_2/csgo/Defeat/1.png",
+                "/assets/result/instagram/Layer_2/csgo/Defeat/2.png",
+                "/assets/result/instagram/Layer_2/csgo/Defeat/3.png",
+                "/assets/result/instagram/Layer_2/csgo/Defeat/4.png"
+              ]
+            }
+          },
           "Layers": {
-            "1": "/assets/result/instagram/Layer_2/csgo/Victory/3.png",
             "2": "/assets/result/instagram/Layer_3/csgo/1.png"
           },
           "Overwrite": {
@@ -17,7 +36,7 @@ const Configurations = {
               },
               {
                 "Id": "1",
-                "Value": "/assets/result/instagram/Layer_2/csgo/Victory/4.png"
+                "Type": "RandomLayer"
               }
             ],
             "ChangeLayer3ToDefeatLabel": [
@@ -27,15 +46,40 @@ const Configurations = {
               },
               {
                 "Id": "1",
-                "Value": "/assets/result/instagram/Layer_2/csgo/Defeat/2.png"
+                "Type": "RandomLayer"
               }
             ],
             "ChangeLayer3ToDrawLabel": []
           }
         },
         "VALORANT": {
+          "RandomLayer": {
+            "ChangeLayer3ToVictoryLabel": {
+              "LayerId": 1,
+              "LayerMap": [
+                "/assets/result/instagram/Layer_2/valorant/Victory/1.png",
+                "/assets/result/instagram/Layer_2/valorant/Victory/2.png",
+                "/assets/result/instagram/Layer_2/valorant/Victory/3.png"
+              ]
+            },
+            "ChangeLayer3ToDefeatLabel": {
+              "LayerId": 1,
+              "LayerMap": [
+                "/assets/result/instagram/Layer_2/valorant/Defeat/1.png",
+                "/assets/result/instagram/Layer_2/valorant/Defeat/2.png",
+                "/assets/result/instagram/Layer_2/valorant/Defeat/3.png"
+              ]
+            },
+            "ChangeLayer3ToDrawLabel": {
+              "LayerId": 1,
+              "LayerMap": [
+                "/assets/result/instagram/Layer_2/valorant/Defeat/1.png",
+                "/assets/result/instagram/Layer_2/valorant/Defeat/2.png",
+                "/assets/result/instagram/Layer_2/valorant/Defeat/3.png"
+              ]
+            }
+          },
           "Layers": {
-            "1": "/assets/result/instagram/Layer_2/valorant/Victory/1.png",
             "2": "/assets/result/instagram/Layer_3/valorant/2.png"
           },
           "Overwrite": {
@@ -46,7 +90,7 @@ const Configurations = {
               },
               {
                 "Id": "1",
-                "Value": "/assets/result/instagram/Layer_2/valorant/Victory/1.png",
+                "Type": "RandomLayer"
               }
             ],
             "ChangeLayer3ToDefeatLabel": [
@@ -56,7 +100,7 @@ const Configurations = {
               },
               {
                 "Id": "1",
-                "Value": "/assets/result/instagram/Layer_2/valorant/Defeat/1.png",
+                "Type": "RandomLayer"
               }
             ],
             "ChangeLayer3ToDrawLabel": [
@@ -66,7 +110,7 @@ const Configurations = {
               },
               {
                 "Id": "1",
-                "Value": "/assets/result/instagram/Layer_2/valorant/Defeat/1.png",
+                "Type": "RandomLayer"
               }
             ]
           }
@@ -127,8 +171,27 @@ const Configurations = {
       "Height": 1080,
       "GameType": {
         "CSGO": {
+          "RandomLayer": {
+            "ChangeLayer3ToVictoryLabel": {
+              "LayerId": 1,
+              "LayerMap": [
+                "/assets/result/twitter/Layer_2/csgo/Victory/1.png",
+                "/assets/result/twitter/Layer_2/csgo/Victory/2.png",
+                "/assets/result/twitter/Layer_2/csgo/Victory/3.png",
+                "/assets/result/twitter/Layer_2/csgo/Victory/4.png"
+              ]
+            },
+            "ChangeLayer3ToDefeatLabel": {
+              "LayerId": 1,
+              "LayerMap": [
+                "/assets/result/twitter/Layer_2/csgo/Defeat/1.png",
+                "/assets/result/twitter/Layer_2/csgo/Defeat/2.png",
+                "/assets/result/twitter/Layer_2/csgo/Defeat/3.png",
+                "/assets/result/twitter/Layer_2/csgo/Defeat/4.png"
+              ]
+            }
+          },
           "Layers": {
-            "1": "/assets/result/twitter/Layer_2/csgo/Victory/3.png",
             "2": "/assets/result/twitter/Layer_3/csgo/1.png"
           },
           "Overwrite": {
@@ -139,7 +202,7 @@ const Configurations = {
               },
               {
                 "Id": "1",
-                "Value": "/assets/result/twitter/Layer_2/csgo/Victory/4.png"
+                "Type": "RandomLayer"
               }
             ],
             "ChangeLayer3ToDefeatLabel": [
@@ -149,16 +212,42 @@ const Configurations = {
               },
               {
                 "Id": "1",
-                "Value": "/assets/result/twitter/Layer_2/csgo/Defeat/2.png"
+                "Type": "RandomLayer",
+                "Value": null
               }
             ],
             "ChangeLayer3ToDrawLabel": []
           }
         },
         "VALORANT": {
+          "RandomLayer": {
+            "ChangeLayer3ToVictoryLabel": {
+              "LayerId": 1,
+              "LayerMap": [
+                "/assets/result/twitter/Layer_2/valorant/Victory/1.png",
+                "/assets/result/twitter/Layer_2/valorant/Victory/2.png",
+                "/assets/result/twitter/Layer_2/valorant/Victory/3.png"
+              ]
+            },
+            "ChangeLayer3ToDefeatLabel": {
+              "LayerId": 1,
+              "LayerMap": [
+                "/assets/result/twitter/Layer_2/valorant/Defeat/1.png",
+                "/assets/result/twitter/Layer_2/valorant/Defeat/2.png",
+                "/assets/result/twitter/Layer_2/valorant/Defeat/3.png",
+              ]
+            },
+            "ChangeLayer3ToDrawLabel": {
+              "LayerId": 1,
+              "LayerMap": [
+                "/assets/result/twitter/Layer_2/valorant/Defeat/1.png",
+                "/assets/result/twitter/Layer_2/valorant/Defeat/2.png",
+                "/assets/result/twitter/Layer_2/valorant/Defeat/3.png",
+              ]
+            },
+          },
           "Layers": {
-            "1": "/assets/result/twitter/Layer_2/valorant/Victory/1.png",
-            "2": "/assets/result/twitter/Layer_3/valorant/2.png"
+            "1": "/assets/result/twitter/Layer_2/valorant/Victory/1.png"
           },
           "Overwrite": {
             "ChangeLayer3ToVictoryLabel": [
@@ -168,7 +257,7 @@ const Configurations = {
               },
               {
                 "Id": "1",
-                "Value": "/assets/result/twitter/Layer_2/valorant/Victory/1.png",
+                "Type": "RandomLayer"
               }
             ],
             "ChangeLayer3ToDefeatLabel": [
@@ -178,7 +267,7 @@ const Configurations = {
               },
               {
                 "Id": "1",
-                "Value": "/assets/result/twitter/Layer_2/valorant/Defeat/1.png",
+                "Type": "RandomLayer"
               }
             ],
             "ChangeLayer3ToDrawLabel": [
@@ -188,7 +277,7 @@ const Configurations = {
               },
               {
                 "Id": "1",
-                "Value": "/assets/result/twitter/Layer_2/valorant/Defeat/1.png",
+                "Type": "RandomLayer"
               }
             ]
           }
@@ -253,9 +342,16 @@ const Configurations = {
       },
       "GameType": {
         "CSGO": {
+          "RandomLayer": {
+            "Default": {
+              "LayerId": 2,
+              "LayerMap": [
+                "/assets/announce/instagram/Layer_3/csgo/1.png"
+              ]
+            }
+          },
           "Layers": {
             "1": "/assets/announce/instagram/Layer_2/csgo/2.png",
-            "2": "/assets/announce/instagram/Layer_3/csgo/1.png"
           },
           "Overwrite": {
             "ChangeToLayoutWithText": [
@@ -300,8 +396,17 @@ const Configurations = {
           }
         },
         "VALORANT": {
+          "RandomLayer": {
+            "Default": {
+              "LayerId": 1,
+              "LayerMap": [
+                "/assets/announce/instagram/Layer_2/valorant/1.png",
+                "/assets/announce/instagram/Layer_2/valorant/2.png",
+                "/assets/announce/instagram/Layer_2/valorant/3.png"
+              ]
+            }
+          },
           "Layers": {
-            "1": "/assets/announce/instagram/Layer_2/valorant/1.png",
             "2": "/assets/announce/instagram/Layer_3/valorant/2.png"
           },
           "Overwrite": {
@@ -407,8 +512,18 @@ const Configurations = {
       "Height": 1080,
       "GameType": {
         "CSGO": {
+          "RandomLayer": {
+            "Default": {
+              "LayerId": 1,
+              "LayerMap": [
+                "/assets/announce/twitter/Layer_2/csgo/1.png",
+                "/assets/announce/twitter/Layer_2/csgo/2.png",
+                "/assets/announce/twitter/Layer_2/csgo/3.png",
+                "/assets/announce/twitter/Layer_2/csgo/4.png",
+              ]
+            }
+          },
           "Layers": {
-            "1": "/assets/announce/twitter/Layer_2/csgo/1.png",
             "2": "/assets/announce/twitter/Layer_3/csgo/1.png"
           },
           "Overwrite": {
@@ -421,8 +536,17 @@ const Configurations = {
           }
         },
         "VALORANT": {
+          "RandomLayer": {
+            "Default": {
+              "LayerId": 1,
+              "LayerMap": [
+                "/assets/announce/twitter/Layer_2/valorant/1.png",
+                "/assets/announce/twitter/Layer_2/valorant/2.png",
+                "/assets/announce/twitter/Layer_2/valorant/3.png"
+              ]
+            }
+          },
           "Layers": {
-            "1": "/assets/announce/twitter/Layer_2/valorant/1.png",
             "2": "/assets/announce/twitter/Layer_3/valorant/1.png"
           },
           "Overwrite": {
