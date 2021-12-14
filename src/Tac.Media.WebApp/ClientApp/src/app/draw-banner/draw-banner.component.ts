@@ -1,6 +1,6 @@
 import { Component, OnInit, QueryList, ViewChildren, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CanvasComponent } from '../components/canvas/canvas.component';
+import { CanvasComponent, IPaint } from '../components/canvas/canvas.component';
 import { Configurations } from "./banner-configurations";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ResultFormComponent } from './result-form.component';
@@ -115,10 +115,37 @@ export class DrawBannerComponent implements OnInit {
 
   private ApplyGameType() {
     Object.assign(this._bannerMapped.Instagram.Layers, this._bannerMapped.Instagram.GameType[this.gameType].Layers);
+
+    if (this._bannerMapped.Instagram.GameType[this.gameType].RandomLayer) {
+      const type = this.isBannerResult ? "ChangeLayer3ToVictoryLabel" : "Default";
+      const result = this.ApplyRandomLayer(this._bannerMapped.Instagram.GameType[this.gameType].RandomLayer, type);
+      const obj = {};
+      obj[result.Id] = result.Value;
+      Object.assign(this._bannerMapped.Instagram.Layers, obj);
+    }
+
     Object.assign(this._bannerMapped.Instagram.Overwrite, this._bannerMapped.Instagram.GameType[this.gameType].Overwrite);
 
     Object.assign(this._bannerMapped.Twitter.Layers, this._bannerMapped.Twitter.GameType[this.gameType].Layers);
+
+    if (this._bannerMapped.Twitter.GameType[this.gameType].RandomLayer) {
+      const type = this.isBannerResult ? "ChangeLayer3ToVictoryLabel" : "Default";
+      const result = this.ApplyRandomLayer(this._bannerMapped.Twitter.GameType[this.gameType].RandomLayer, type);
+      const obj = {};
+      obj[result.Id] = result.Value;
+      Object.assign(this._bannerMapped.Twitter.Layers, obj);
+    }
+
     Object.assign(this._bannerMapped.Twitter.Overwrite, this._bannerMapped.Twitter.GameType[this.gameType].Overwrite);
+  }
+
+  private ApplyRandomLayer(randomLayer: any, type: string = "Default") {
+    const random = Math.floor(Math.random() * randomLayer[type].LayerMap.length);
+
+    return {
+      Id: randomLayer[type].LayerId,
+      Value: randomLayer[type].LayerMap[random]
+    }
   }
 
   public ChangeBanerType(type: string) {
@@ -144,7 +171,14 @@ export class DrawBannerComponent implements OnInit {
 
       twitterOverwrite.forEach(overWrite => {
         const twitterCanvas = this.twitterCanvas.toArray().find(e => e.map.Id == overWrite.Id);
+
         if (twitterCanvas && (!twitterCanvas.override || twitterCanvas.overrideId != id)) {
+
+          if (overWrite.Type && overWrite.Type == "RandomLayer") {
+            const randomLayer = this.ApplyRandomLayer(this._bannerMapped.Twitter.GameType[this.gameType].RandomLayer, id);
+            overWrite = randomLayer;
+          }
+
           twitterCanvas.SetOverride(
             overWrite,
             id
@@ -160,6 +194,12 @@ export class DrawBannerComponent implements OnInit {
         const instagramCanvas = this.instagramCanvas.toArray().find(e => e.map.Id == overWrite.Id);
 
         if (instagramCanvas && (!instagramCanvas.override || instagramCanvas.overrideId != id)) {
+
+          if (overWrite.Type && overWrite.Type == "RandomLayer") {
+            const randomLayer = this.ApplyRandomLayer(this._bannerMapped.Instagram.GameType[this.gameType].RandomLayer, id);
+            overWrite = randomLayer;
+          }
+
           instagramCanvas.SetOverride(
             overWrite,
             id
