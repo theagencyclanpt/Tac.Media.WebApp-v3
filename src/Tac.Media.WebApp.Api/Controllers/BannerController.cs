@@ -32,8 +32,8 @@ namespace Tac.Media.WebApp.Api.Controllers
             if (Directory.Exists(tempDirectory))
             {
                 return new GetPreviewByIdResult(
-                    await GetImageBase64FromDirectory(tempDirectory + "/twitter.png"),
-                    await GetImageBase64FromDirectory(tempDirectory + "/instagram.png")
+                    await GetImageBase64FromDirectory(tempDirectory + "/twitter.jpeg"),
+                    await GetImageBase64FromDirectory(tempDirectory + "/instagram.jpeg")
                 );
             }
 
@@ -61,8 +61,8 @@ namespace Tac.Media.WebApp.Api.Controllers
                 throw new Exception("Cant create direcotry: " + tempDirectory, e);
             }
 
-            await SaveImageBase64OnTempDirectory(tempDirectory + "/instagram.png", request.InstagramBase64);
-            await SaveImageBase64OnTempDirectory(tempDirectory + "/twitter.png", request.TwitterBase64);
+            await SaveImageBase64OnTempDirectory(tempDirectory + "/instagram.jpeg", request.InstagramBase64);
+            await SaveImageBase64OnTempDirectory(tempDirectory + "/twitter.jpeg", request.TwitterBase64);
 
             return new GenerateBannerUrlResponse(guid.ToString());
         }
@@ -74,7 +74,7 @@ namespace Tac.Media.WebApp.Api.Controllers
 
             using (var image = Image.Load(bytes))
             {
-                 await image.SaveAsPngAsync(directory);
+                 await image.SaveAsJpegAsync(directory);
             }
         }
 
