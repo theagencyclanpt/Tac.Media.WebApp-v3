@@ -25,6 +25,7 @@
     </div>
   </div>
   <div #previewDiv class="preview">
-    <canvas #canvas></canvas>
+    <canvas-engine [maxHeight]="defaultPreview.heigth" [maxWidth]="defaultPreview.width" [layers]="layers">
+    </canvas-engine>
   </div>
 </div>

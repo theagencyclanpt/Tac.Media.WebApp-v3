@@ -13,6 +13,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { FormResultComponent } from './components/generater/components/form-result/form-result.component';
 import { FormAnnouncementComponent } from './components/generater/components/form-announcement/form-announcement.component';
 import { CanvasEngineComponent } from './components/generater/components/canvas-engine/canvas-engine.component';
+import { CanvasAdvancedComponent } from './components/generater/components/canvas-engine/canvas.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -35,6 +36,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     FormResultComponent,
     FormAnnouncementComponent,
     CanvasEngineComponent,
+    CanvasAdvancedComponent
   ],
   imports: [
     BrowserModule,

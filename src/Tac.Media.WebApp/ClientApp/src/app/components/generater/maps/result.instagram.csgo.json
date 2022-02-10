@@ -1,0 +1,81 @@
+{
+  "Game": "CSGO",
+  "Style": "RESULTADO",
+  "Type": "INSTAGRAM",
+  "Layers": {
+    "0": "/assets/result/instagram/Layer_1.png",
+    "1": [
+      "/assets/result/instagram/Layer_2/csgo/Victory/1.png",
+      "/assets/result/instagram/Layer_2/csgo/Victory/2.png",
+      "/assets/result/instagram/Layer_2/csgo/Victory/3.png",
+      "/assets/result/instagram/Layer_2/csgo/Victory/4.png"
+    ],
+    "2": "/assets/result/instagram/Layer_3/csgo/1.png"
+  },
+  "Actions": {
+    "ChangeLayerToVictoryAction": {
+      "Layer": {
+        "1": [
+          "/assets/result/instagram/Layer_2/csgo/Victory/1.png",
+          "/assets/result/instagram/Layer_2/csgo/Victory/2.png",
+          "/assets/result/instagram/Layer_2/csgo/Victory/3.png",
+          "/assets/result/instagram/Layer_2/csgo/Victory/4.png"
+        ],
+        "2": "/assets/result/instagram/Layer_3/csgo/1.png"
+      }
+    },
+    "ChangeLayerToDefeatAction": {
+      "1": [
+        "/assets/result/instagram/Layer_2/csgo/Defeat/1.png",
+        "/assets/result/instagram/Layer_2/csgo/Defeat/2.png",
+        "/assets/result/instagram/Layer_2/csgo/Defeat/3.png",
+        "/assets/result/instagram/Layer_2/csgo/Defeat/4.png"
+      ],
+      "2": "/assets/result/instagram/Layer_3/csgo/2.png"
+    }
+  },
+  "Inputs": [
+    {
+      "Id": "campeonato",
+      "Type": "text",
+      "X": 25,
+      "Y": 1330,
+      "Font": "54px BebasNeueRegular",
+      "Color": "white"
+    },
+    {
+      "Id": "score",
+      "Type": "text",
+      "X": 420,
+      "Y": 1500,
+      "Font": "53pt HansonBold",
+      "Color": "white",
+      "TextAlign": "center"
+    },
+    {
+      "Id": "team1logo",
+      "Type": "image",
+      "X": 45,
+      "Y": 1380,
+      "Width": 205,
+      "Height": 205
+    },
+    {
+      "Id": "team2logo",
+      "Type": "image",
+      "X": 585,
+      "Y": 1380,
+      "Width": 205,
+      "Height": 205
+    },
+    {
+      "Id": "ligalogo",
+      "Type": "image",
+      "X": 40,
+      "Y": 1260,
+      "Width": 500,
+      "Height": 100,
+      "ForceRenderX": true
+    }
+  ]
+}

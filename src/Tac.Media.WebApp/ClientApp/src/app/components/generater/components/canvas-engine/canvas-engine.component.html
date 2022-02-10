@@ -1,1 +1,3 @@
-<p>canvas-engine works!</p>
+<canvas-advanced #canvas [maxHeight]="maxHeight" [maxWidth]="maxWidth" *ngFor="let number of mappedPaint; let i = index"
+  [map]="mappedPaint[i]">
+</canvas-advanced>
