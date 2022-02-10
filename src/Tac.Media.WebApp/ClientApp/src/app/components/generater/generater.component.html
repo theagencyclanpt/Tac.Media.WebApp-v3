@@ -1,0 +1,30 @@
+<div class="layout">
+  <div class="side-bar">
+    <div class="content row">
+      <mat-form-field appearance="outline" style="margin-right: 5px;">
+        <mat-label>Estilo</mat-label>
+        <mat-select [(ngModel)]="styleType">
+          <mat-option value="ANUNCIO">Anuncio</mat-option>
+          <mat-option value="RESULTADO">Resultado</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Jogo</mat-label>
+        <mat-select [(ngModel)]="gameType">
+          <mat-option value="CSGO">Counter Strike Global Offensive</mat-option>
+          <mat-option value="VALORANT">Valorant</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="content form">
+      <form-result></form-result>
+    </div>
+    <div class="content row actions">
+      <button mat-raised-button style="margin-right: 5px;">Download</button>
+      <button mat-raised-button>Publish</button>
+    </div>
+  </div>
+  <div #previewDiv class="preview">
+    <canvas #canvas></canvas>
+  </div>
+</div>

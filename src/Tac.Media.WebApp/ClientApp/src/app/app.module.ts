@@ -1,16 +1,20 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CanvasComponent } from './components/canvas/canvas.component';
-import { AnnouncementFormComponent } from './draw-banner/announcement-form.component';
-import { ResultFormComponent } from './draw-banner/result-form.component';
-import { DrawBannerComponent } from './draw-banner/draw-banner.component';
-import { PreviewComponent } from './preview/preview.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CookieService } from 'ngx-cookie-service';
+
+import { LoginComponent } from './components/login/login.component';
+import { GeneraterComponent } from './components/generater/generater.component';
+import { PublishComponent } from './components/publish/publish.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { FormResultComponent } from './components/generater/components/form-result/form-result.component';
+import { FormAnnouncementComponent } from './components/generater/components/form-announcement/form-announcement.component';
+import { CanvasEngineComponent } from './components/generater/components/canvas-engine/canvas-engine.component';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatInputModule } from '@angular/material/input';
@@ -23,23 +27,21 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
-    AnnouncementFormComponent,
-    ResultFormComponent,
-    CanvasComponent,
     AppComponent,
-    DrawBannerComponent,
-    PreviewComponent
+    LoginComponent,
+    GeneraterComponent,
+    PublishComponent,
+    SettingsComponent,
+    FormResultComponent,
+    FormAnnouncementComponent,
+    CanvasEngineComponent,
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-    HttpClientModule,
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule.forRoot([
-      { path: '', component: DrawBannerComponent, pathMatch: 'full' },
-      { path: 'preview', component: PreviewComponent, pathMatch: 'full' },
-    ]),
-    BrowserAnimationsModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatInputModule,
@@ -50,7 +52,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSelectModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

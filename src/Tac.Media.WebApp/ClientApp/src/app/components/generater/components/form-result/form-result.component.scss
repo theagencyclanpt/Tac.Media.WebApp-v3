@@ -1,0 +1,65 @@
+:host, form{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.score{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.score > .mat-form-field:first-child{
+  width: calc(50% - 5px);
+  margin-right: 10px;
+}
+
+.score > .mat-form-field:nth-child(2){
+  width: calc(50% - 5px);
+} 
+
+.upload-images{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.upload-images > button, .button{
+  height: 60px;
+  width: 100%;
+  background-color: #414141;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button{
+  height: 48px;
+  width: 100%;
+  background-color: #414141;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-button-toggle-checked{
+  background-color: #222222;
+}
+
+.upload-images h6{
+  margin: 0;
+}
+
+.upload-images > button:nth-child(-n+4){
+  margin-right: 2px;
+}
+
+.full-width-field {
+  width: 100%;
+}

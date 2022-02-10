@@ -24,6 +24,7 @@ namespace Tac.Media.WebApp.Api.Controllers
             _logger = logger;
             _bannerConfigurations = bannerConfigurations.Value;
         }
+
         [HttpGet("preview-by-id")]
         public async Task<GetPreviewByIdResult> GetPreviewById([FromQuery] string Id)
         {
