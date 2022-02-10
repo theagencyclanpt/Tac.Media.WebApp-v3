@@ -32,20 +32,10 @@ export class PreviewComponent implements OnInit {
     if (!this.previewId) {
       this.loadProcess = false;
     } else {
-      this.http.get("/api/banner/preview-by-id?id=" + this.previewId)
-        .subscribe(data => {
-          if (data) {
-            this.twitterImg.nativeElement.src = data["twitterImage"];
-            this.twitterImg.nativeElement.crossOrigin = "anonymous";
-            this.instagramImg.nativeElement.src = data["instagramImage"];
-            this.instagramImg.nativeElement.crossOrigin = "anonymous";
+      this.twitterImg.nativeElement.src = "/assets/generated/" + this.previewId + "/twitter.jpeg";
+      this.instagramImg.nativeElement.src = "/assets/generated/" + this.previewId + "/instagram.jpeg";
 
-          } else {
-            this.previewId = null;
-          }
-
-          this.loadProcess = false;
-        });
+      this.loadProcess = false;
     }
   }
 

@@ -1,54 +1,3 @@
-::ng-deep .mat-form-field .mat-input-element {
-  color: slategray;
-}
-::ng-deep .mat-form-field .mat-form-field-label {
-  color: slategray!important;
-}
-::ng-deep .mat-form-field .mat-form-field-underline {
-  background-color: slategray;
-}
-::ng-deep .mat-form-field .mat-form-field-ripple {
-  background-color: slategray;
-}
-::ng-deep .mat-form-field .mat-form-field-required-marker {
-  color: slategray;
-}
-
-
-::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
-  color: #ff884d!important;
-}
-::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
-  background-color: #ff884d;
-}
-::ng-deep .mat-form-field.mat-focused .mat-form-field-required-marker {
-  color: #ff884d;
-}
-::ng-deep .mat-form-field.mat-focused .mat-input-element {
-  color: #ff884d;
-}
-
-::ng-deep .mat-form-field.mat-form-field-invalid .mat-input-element {
-  color: #000080;
-}
-::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
-  color: #000080!important;
-}
-::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label .mat-form-field-required-marker {
-  color: #000080;
-}
-::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
-  background-color: #000080;
-}
-
-::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
-  color: #ffffff;
-}
-
-::ng-deep .mat-select-value {
-  color: slategray;
-}
-
 @font-face {
   font-family: BebasNeueRegular;
   src: url(/assets/fonts/BebasNeueRegular.ttf);
@@ -86,6 +35,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #ffffff !important;
 }
 
 .preview{
@@ -97,24 +47,46 @@
   height: 100%;
 }
 
+.preview-canvas{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
 .side-bar{
   display: flex;
   flex-direction: column;
   position: relative;
   align-items: center;
   justify-content: space-between;
-  height: 100%;
-  width: 300px;
-  min-width: 300px;
-  max-width: 300px;
-  border-right: 1px solid gray;
+  margin-left: 25px;
+  height: 95%;
+  width: 350px;
+  min-width: 350px;
+  max-width: 350px;
   padding: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 15px;
+  padding-top: 25px;
+  padding-bottom: 25px;
 }
 
 .side-bar__options{
   display: flex;
   flex-direction: row;
   width: 100%;
+}
+
+.side-bar__options .header{
+  position:absolute;
+  margin-top:-35px;
+  margin-left:5px;
+  color:white;
+  background:rgb(107, 107, 107);
+  border-radius:10px;
+  padding:2px 10px;
 }
 
 .side-bar__options.vertical{
@@ -130,14 +102,14 @@
 }
 
 .side-bar__options.side-bar__options-buttons > button{
-  height: 60px;
+  height: 48px;
   width: 100%;
   background-color: #2a2a2a;
   color: white;
 }
 
-.side-bar__options.side-bar__options-buttons > button:first-child{
-  margin-right: 10px;
+.side-bar__options.side-bar__options-buttons > button:nth-child(1){
+  margin-right: 15px;
 }
 
 .full-width-field {
@@ -145,7 +117,7 @@
 }
 
 .side-bar__preview{
-  margin-left: 10px;
+  margin-left: 25px;
   display: flex;
   height: 100%;
   width: 70px;
