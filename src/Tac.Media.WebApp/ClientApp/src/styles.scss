@@ -3,3 +3,18 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@font-face {
+  font-family: BebasNeueRegular;
+  src: url(/assets/fonts/BebasNeueRegular.ttf);
+}
+
+@font-face {
+  font-family: HansonBold;
+  src: url(/assets/fonts/HansonBold.ttf);
+}
+
+@font-face {
+  font-family: Maler;
+  src: url(/assets/fonts/Maler.ttf);
+}

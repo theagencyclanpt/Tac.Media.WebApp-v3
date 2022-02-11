@@ -44,7 +44,10 @@
       "Type": "text",
       "X": 25,
       "Y": 1330,
-      "Font": "54px BebasNeueRegular",
+      "Font": {
+        "Size": 54,
+        "Family": "BebasNeueRegular"
+      },
       "Color": "white"
     },
     {
@@ -52,7 +55,10 @@
       "Type": "text",
       "X": 420,
       "Y": 1500,
-      "Font": "53pt HansonBold",
+      "Font": {
+        "Size": 53,
+        "Family": "HansonBold"
+      },
       "Color": "white",
       "TextAlign": "center"
     },

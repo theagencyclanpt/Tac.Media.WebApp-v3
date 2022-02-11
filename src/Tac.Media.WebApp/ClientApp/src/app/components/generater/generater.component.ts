@@ -63,6 +63,7 @@ export class GeneraterComponent implements OnInit, AfterViewInit {
     });
 
     this.layers = [];
+    this.inputs = [];
     let formData = this.getDataFromSelectedForm();
     let action = this.selectedMap.Actions[formData?.Action];
 
@@ -92,10 +93,24 @@ export class GeneraterComponent implements OnInit, AfterViewInit {
       this.selectedMap?.Inputs.forEach((input: IPaint) => {
         this.inputs.push(input);
       });
+
+      if (formData?.Inputs) {
+        Object.keys(formData.Inputs).forEach(key => {
+          let objIndex = this.inputs.findIndex((obj => obj.Id == key));
+
+          if (objIndex == -1) {
+            return;
+          }
+
+          //@ts-ignore
+          this.inputs[objIndex].Value = formData.Inputs[key];
+        });
+      }
     }
 
     if (this.canvasEngine) {
       this.canvasEngine.layers = this.layers;
+      this.canvasEngine.inputs = this.inputs;
       this.canvasEngine.ngOnInit();
     }
   }
@@ -142,5 +157,14 @@ export class GeneraterComponent implements OnInit, AfterViewInit {
 
   getDataFromSelectedForm() {
     return this.formResult?.getAllData();
+  }
+
+  public async onDownload() {
+    let image = await this.canvasEngine.GetResult();
+
+    var link = document.createElement('a');
+    link.download = 'instagram.jpg';
+    link.href = image.src;
+    link.click();
   }
 }

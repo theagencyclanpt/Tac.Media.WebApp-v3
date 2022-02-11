@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CanvasAdvancedComponent } from "./canvas.component";
 
 export type IPaintType = "image" | "text";
@@ -12,7 +12,10 @@ export interface IPaint {
   Height?: number,
   Value?: any,
   Color?: string,
-  Font?: string,
+  Font?: {
+    Size: number,
+    Family: string
+  },
   TextAlign?: CanvasTextAlign,
   ForceRenderX?: boolean,
   IsStrokeText?: boolean,
@@ -29,7 +32,6 @@ export interface IPaint {
 })
 export class CanvasEngineComponent implements OnInit {
 
-
   @Input('maxHeight') maxHeight: number = 0;
   @Input('maxWidth') maxWidth: number = 0;
 
@@ -38,6 +40,9 @@ export class CanvasEngineComponent implements OnInit {
 
   @Input('layers') layers: string[] = [];
   @Input('inputs') inputs: IPaint[] = [];
+
+  @ViewChild('canvasRender', { static: true })
+  canvasRender!: ElementRef<HTMLCanvasElement>;
 
   @ViewChildren("canvas")
   canvas!: QueryList<CanvasAdvancedComponent>;
@@ -77,11 +82,10 @@ export class CanvasEngineComponent implements OnInit {
 
   public changeInputValue(id: string, value: any) {
     let canvas = this.canvas.toArray().find(e => e.map.Id == id);
-    console.log(canvas);
 
     if (canvas) {
       canvas.map.Value = value;
-      canvas.render();
+      canvas.renderPreview();
     }
   }
 
@@ -90,7 +94,27 @@ export class CanvasEngineComponent implements OnInit {
 
     if (canvas) {
       canvas.map.Value = value;
-      canvas.render();
+      canvas.renderPreview();
     }
+  }
+
+  public async GetResult(): Promise<HTMLImageElement> {
+    const canvasMain = this.canvasRender.nativeElement;
+    canvasMain.width = this.originalWidth;
+    canvasMain.height = this.originalHeight;
+    const ctx = canvasMain.getContext('2d');
+
+    for (let canvas of this.canvas.toArray()) {
+      ctx?.drawImage(await canvas.GetImage(), 0, 0);
+    }
+
+    let image = new Image();
+    image.src = canvasMain?.toDataURL('image/jpeg', 0.75);
+
+    return new Promise((resolve) => {
+      image.onload = () => {
+        resolve(image);
+      }
+    });
   }
 }

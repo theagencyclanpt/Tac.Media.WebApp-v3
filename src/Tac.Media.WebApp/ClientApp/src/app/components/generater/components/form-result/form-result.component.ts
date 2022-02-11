@@ -37,7 +37,11 @@ export class FormResultComponent implements OnInit, OnChanges {
   });
 
   private data = {
-    Action: ""
+    Action: "",
+    Inputs: {
+      campeonato: "",
+      score: ""
+    }
   };
 
   ngOnInit(): void {
@@ -56,14 +60,17 @@ export class FormResultComponent implements OnInit, OnChanges {
   onChanges(): void {
     this.form.get('campeonato')?.valueChanges.subscribe(val => {
       this.OnChangeForm.emit({ key: "campeonato", value: val });
+      this.data.Inputs["campeonato"] = val;
     });
 
     this.form.get('team1Score')?.valueChanges.subscribe(val => {
       this.OnChangeForm.emit({ key: "score", value: this.getScore() });
+      this.data.Inputs["score"] = this.getScore();
     });
 
     this.form.get('team2Score')?.valueChanges.subscribe(val => {
       this.OnChangeForm.emit({ key: "score", value: this.getScore() });
+      this.data.Inputs["score"] = this.getScore();
     });
   }
 
