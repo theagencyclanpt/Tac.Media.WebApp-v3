@@ -3,21 +3,22 @@
     <div class="content row">
       <mat-form-field appearance="outline" style="margin-right: 5px;">
         <mat-label>Estilo</mat-label>
-        <mat-select [(ngModel)]="styleType">
+        <mat-select [(ngModel)]="styleType" (selectionChange)="onStyleTypeChange($event.value)">
           <mat-option value="ANUNCIO">Anuncio</mat-option>
           <mat-option value="RESULTADO">Resultado</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Jogo</mat-label>
-        <mat-select [(ngModel)]="gameType">
+        <mat-select [(ngModel)]="gameType" (selectionChange)="onGameTypeChange($event.value)">
           <mat-option value="CSGO">Counter Strike Global Offensive</mat-option>
           <mat-option value="VALORANT">Valorant</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
     <div class="content form">
-      <form-result></form-result>
+      <form-result [gameType]="gameType" (invokeAction)="invokeAction($event)" (onChangeForm)="onFormChange($event)">
+      </form-result>
     </div>
     <div class="content row actions">
       <button mat-raised-button style="margin-right: 5px;">Download</button>
@@ -25,7 +26,8 @@
     </div>
   </div>
   <div #previewDiv class="preview">
-    <canvas-engine [maxHeight]="defaultPreview.heigth" [maxWidth]="defaultPreview.width" [layers]="layers">
+    <canvas-engine [maxHeight]="defaultPreview.heigth" [maxWidth]="defaultPreview.width" [layers]="layers"
+      [originalHeight]="selectedMap.Height" [originalWidth]="selectedMap.Width" [inputs]="inputs">
     </canvas-engine>
   </div>
 </div>

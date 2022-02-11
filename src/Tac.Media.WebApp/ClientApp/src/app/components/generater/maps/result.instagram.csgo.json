@@ -2,6 +2,8 @@
   "Game": "CSGO",
   "Style": "RESULTADO",
   "Type": "INSTAGRAM",
+  "Width": 1080,
+  "Height": 1920,
   "Layers": {
     "0": "/assets/result/instagram/Layer_1.png",
     "1": [
@@ -25,13 +27,15 @@
       }
     },
     "ChangeLayerToDefeatAction": {
-      "1": [
-        "/assets/result/instagram/Layer_2/csgo/Defeat/1.png",
-        "/assets/result/instagram/Layer_2/csgo/Defeat/2.png",
-        "/assets/result/instagram/Layer_2/csgo/Defeat/3.png",
-        "/assets/result/instagram/Layer_2/csgo/Defeat/4.png"
-      ],
-      "2": "/assets/result/instagram/Layer_3/csgo/2.png"
+      "Layer": {
+        "1": [
+          "/assets/result/instagram/Layer_2/csgo/Defeat/1.png",
+          "/assets/result/instagram/Layer_2/csgo/Defeat/2.png",
+          "/assets/result/instagram/Layer_2/csgo/Defeat/3.png",
+          "/assets/result/instagram/Layer_2/csgo/Defeat/4.png"
+        ],
+        "2": "/assets/result/instagram/Layer_3/csgo/2.png"
+      }
     }
   },
   "Inputs": [

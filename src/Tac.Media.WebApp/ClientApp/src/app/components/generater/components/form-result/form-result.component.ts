@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, ViewChild, ElementRef, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,16 +6,15 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: "./form-result.component.html",
   styleUrls: ["form-result.component.scss"]
 })
-export class FormResultComponent implements OnInit {
+export class FormResultComponent implements OnInit, OnChanges {
+
+  @Input('gameType') gameType!: string;
+
+  @Output("invokeAction")
+  invokeAction = new EventEmitter<any>();
 
   @Output("onChangeForm")
   OnChangeForm = new EventEmitter<any>();
-
-  @Output("loadOverwrite")
-  LoadOverwrite = new EventEmitter<any>();
-
-  @Output("unloadOverwrite")
-  UnloadOverwrite = new EventEmitter<any>();
 
   @ViewChild('logoImage', { static: true })
   uploadLogoImage?: ElementRef<HTMLInputElement>;
@@ -26,7 +25,8 @@ export class FormResultComponent implements OnInit {
   @ViewChild('logoTeam1', { static: true })
   uploadLogoTeam1?: ElementRef<HTMLInputElement>;
 
-  public selectedVal?: string;
+  public selectedVal: string = "victory";
+
   form: FormGroup = new FormGroup({
     campeonato: new FormControl(''),
     ligalogo: new FormControl(''),
@@ -36,9 +36,21 @@ export class FormResultComponent implements OnInit {
     team2Score: new FormControl(''),
   });
 
+  private data = {
+    Action: ""
+  };
+
   ngOnInit(): void {
-    this.selectedVal = 'victory';
     this.onChanges();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes["gameType"]) {
+      if (changes["gameType"].currentValue == "CSGO" && this.selectedVal == "draw") {
+        this.selectedVal = "victory";
+        this.data.Action = "ChangeLayerToVictoryAction";
+      }
+    }
   }
 
   onChanges(): void {
@@ -62,10 +74,6 @@ export class FormResultComponent implements OnInit {
     team2Score = team2Score ? team2Score : 0;
 
     return team1Score + "-" + team2Score;
-  }
-
-  resetResultType() {
-    this.selectedVal = 'victory';
   }
 
   onFileChange(event: any, key: any) {
@@ -109,16 +117,23 @@ export class FormResultComponent implements OnInit {
 
     switch (key) {
       case "victory":
-        this.LoadOverwrite.emit({ id: "ChangeLayer3ToVictoryLabel" })
+        this.invokeAction.emit("ChangeLayerToVictoryAction");
+        this.data.Action = "ChangeLayerToVictoryAction";
         break;
       case "defeat":
-        this.LoadOverwrite.emit({ id: "ChangeLayer3ToDefeatLabel" })
+        this.invokeAction.emit("ChangeLayerToDefeatAction");
+        this.data.Action = "ChangeLayerToDefeatAction";
         break;
       case "draw":
-        this.LoadOverwrite.emit({ id: "ChangeLayer3ToDrawLabel" })
+        this.invokeAction.emit("ChangeLayerToDrawAction");
+        this.data.Action = "ChangeLayerToDrawAction";
         break;
       default:
         break;
     }
+  }
+
+  getAllData() {
+    return this.data;
   }
 }

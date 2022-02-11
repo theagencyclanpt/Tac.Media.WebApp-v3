@@ -39,7 +39,7 @@
     <mat-button-toggle value="victory" class="full-width-field button">
       Victory
     </mat-button-toggle>
-    <mat-button-toggle value="draw" class="full-width-field button">Draw
+    <mat-button-toggle value="draw" class="full-width-field button" [disabled]="gameType === 'CSGO'">Draw
     </mat-button-toggle>
     <mat-button-toggle value="defeat" class="full-width-field button">
       Defeat

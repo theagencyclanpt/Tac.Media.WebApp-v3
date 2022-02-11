@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Maps } from "./maps/export";
-import { CanvasEngineComponent } from "./components/canvas-engine/canvas-engine.component";
+import { CanvasEngineComponent, IPaint } from "./components/canvas-engine/canvas-engine.component";
+import { FormResultComponent } from "./components/form-result/form-result.component";
 
 @Component({
   selector: 'app-generater',
@@ -9,13 +10,18 @@ import { CanvasEngineComponent } from "./components/canvas-engine/canvas-engine.
 })
 export class GeneraterComponent implements OnInit, AfterViewInit {
 
-
   @ViewChild('previewDiv', { static: true })
   previewDivElement!: ElementRef<HTMLDivElement>;
 
   @ViewChild(CanvasEngineComponent)
   canvasEngine!: CanvasEngineComponent;
 
+  @ViewChild(FormResultComponent)
+  formResult!: FormResultComponent;
+
+  layers: string[] = [];
+  inputs: IPaint[] = [];
+  selectedMap: any;
   gameType: string = "CSGO";
   styleType: string = "RESULTADO";
   previewType: string = "INSTAGRAM";
@@ -24,24 +30,8 @@ export class GeneraterComponent implements OnInit, AfterViewInit {
     heigth: 0
   }
 
-  layers: string[] = [];
-  selectedMap: any;
-
   ngOnInit(): void {
-    this.selectedMap = Maps.find(e => {
-      return e.Game == this.gameType && e.Style == this.styleType && e.Type == this.previewType
-    });
-
-    if (this.selectedMap?.Layers) {
-      Object.values(this.selectedMap?.Layers).map(a => {
-        if (Array.isArray(a)) {
-          this.layers.push(a[0]);
-        } else {
-          this.layers.push(a as string);
-        }
-      })
-    }
-
+    this.map();
     this.defaultPreview = {
       width: this.previewDivElement.nativeElement.clientWidth,
       heigth: this.previewDivElement.nativeElement.clientHeight
@@ -49,10 +39,108 @@ export class GeneraterComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log(this.canvasEngine.layers);
+    // setTimeout(() => {
+    //   this.canvasEngine.changeLayer(1, this.selectedMap.Layers["1"][1]);
+    // }, 2000);
+  }
 
-    this.canvasEngine.changeLayer(1, this.selectedMap.Layers["1"][1]);
+  @HostListener('window:resize')
+  onResize() {
+    this.defaultPreview = {
+      width: this.previewDivElement.nativeElement.clientWidth,
+      heigth: this.previewDivElement.nativeElement.clientHeight
+    }
 
-    // this.canvasEngine.layers
+    this.canvasEngine.maxHeight = this.defaultPreview.heigth;
+    this.canvasEngine.maxWidth = this.defaultPreview.width;
+
+    this.map();
+  }
+
+  map() {
+    this.selectedMap = Maps.find(e => {
+      return e.Game == this.gameType && e.Style == this.styleType && e.Type == this.previewType
+    });
+
+    this.layers = [];
+    let formData = this.getDataFromSelectedForm();
+    let action = this.selectedMap.Actions[formData?.Action];
+
+    if (this.selectedMap?.Layers) {
+      Object.values(this.selectedMap?.Layers).map(a => {
+        if (Array.isArray(a)) {
+          this.layers.push(a[this.randomIntFromInterval(0, a.length - 1)]);
+        } else {
+          this.layers.push(a as string);
+        }
+      });
+
+      if (action?.Layer) {
+        Object.keys(action.Layer).forEach((key) => {
+          let temp = action.Layer[key];
+
+          if (Array.isArray(temp)) {
+            temp = temp[this.randomIntFromInterval(0, temp.length - 1)];
+          }
+
+          this.layers[parseInt(key)] = temp;
+        });
+      }
+    }
+
+    if (this.selectedMap?.Inputs) {
+      this.selectedMap?.Inputs.forEach((input: IPaint) => {
+        this.inputs.push(input);
+      });
+    }
+
+    if (this.canvasEngine) {
+      this.canvasEngine.layers = this.layers;
+      this.canvasEngine.ngOnInit();
+    }
+  }
+
+  onStyleTypeChange(value: string) {
+    this.styleType = value;
+    this.map();
+  }
+
+  onGameTypeChange(value: string) {
+    this.gameType = value;
+    this.map();
+  }
+
+  invokeAction(actionName: string) {
+    let action = this.selectedMap.Actions[actionName];
+
+    if (!action) {
+      console.error("Not found action " + actionName);
+      return;
+    }
+
+    if (action.Layer) {
+
+      Object.keys(action.Layer).forEach((key) => {
+        let temp = action.Layer[key];
+
+        if (Array.isArray(temp)) {
+          temp = temp[this.randomIntFromInterval(0, temp.length - 1)];
+        }
+
+        this.canvasEngine.changeLayer(key, temp);
+      });
+    }
+  }
+
+  onFormChange({ key, value }: { key: string, value: any }) {
+    this.canvasEngine.changeInputValue(key, value);
+  }
+
+  randomIntFromInterval(min: number, max: number): number { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
+
+  getDataFromSelectedForm() {
+    return this.formResult?.getAllData();
   }
 }
