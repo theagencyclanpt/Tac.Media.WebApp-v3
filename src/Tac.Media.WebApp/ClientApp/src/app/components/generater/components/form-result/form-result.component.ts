@@ -92,6 +92,8 @@ export class FormResultComponent implements OnInit, OnChanges {
 
       reader.onload = () => {
         this.OnChangeForm.emit({ key: key, value: reader.result as string });
+        //@ts-ignore
+        this.data.Inputs[key] = reader.result;
       };
     }
   }

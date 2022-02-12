@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { IPaint } from "./canvas-engine.component";
 
 @Component({
@@ -6,7 +6,7 @@ import { IPaint } from "./canvas-engine.component";
   templateUrl: './canvas.component.html',
   styleUrls: ['./canvas.component.scss']
 })
-export class CanvasAdvancedComponent implements OnInit {
+export class CanvasAdvancedComponent implements OnInit, OnChanges, OnDestroy {
 
   @ViewChild('canvas', { static: true })
   canvas!: ElementRef<HTMLCanvasElement>;
@@ -23,9 +23,22 @@ export class CanvasAdvancedComponent implements OnInit {
 
   private generatedImage = new Image();
   private generatingImage = false;
+  private loadImageProcess: any;
 
   ngOnInit(): void {
     this.renderPreview();
+  }
+
+  ngOnDestroy(): void {
+    if (this.loadImageProcess) {
+      clearTimeout(this.loadImageProcess);
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.loadImageProcess) {
+      clearTimeout(this.loadImageProcess);
+    }
   }
 
   public renderPreview() {
@@ -37,7 +50,7 @@ export class CanvasAdvancedComponent implements OnInit {
 
       this.generatingImage = true;
 
-      setTimeout(() => {
+      this.loadImageProcess = setTimeout(() => {
         this.generatedImage.src = this.canvasRender.nativeElement?.toDataURL();
         this.generatedImage.onload = () => {
           this.generatingImage = false;
@@ -67,20 +80,75 @@ export class CanvasAdvancedComponent implements OnInit {
 
     switch (this.map.Type) {
       case "image":
+        if (!this.map.Value)
+          break;
+
         const img = new Image();
         img.src = this.map.Value;
         img.crossOrigin = "anonymous";
 
         img.onload = () => {
+          var normalize = {
+            widthArea: 0,
+            heightArea: 0,
+            width: 0,
+            height: 0,
+            x: 0,
+            y: 0
+          };
 
-          var normalizeSize = this.calculateAspectRatioFit(
-            img.width,
-            img.height,
-            canvas.width,
-            canvas.height
-          );
+          if (!this.map.Width && !this.map.Height) {
+            let temp = this.calculateAspectRatioFit(
+              img.width,
+              img.height,
+              canvas.width,
+              canvas.height
+            );
+            normalize.height = temp.height;
+            normalize.width = temp.width;
 
-          ctx?.drawImage(img, 0, 0, normalizeSize.width, normalizeSize.height);
+          } else if (this.map.Width && this.map.Height) {
+            normalize.widthArea = this.calculateByNewResolution(this.originalWidth, canvas.width, this.map.Width);
+            normalize.heightArea = this.calculateByNewResolution(this.originalHeight, canvas.height, this.map.Height);
+
+            let newImageResolution = this.calculateAspectRatioFit(
+              img.width,
+              img.height,
+              normalize.widthArea,
+              normalize.heightArea
+            );
+
+            normalize.height = newImageResolution.height;
+            normalize.width = newImageResolution.width;
+
+            normalize.x = this.calculateByNewResolution(this.originalWidth, canvas.width, this.map.X);
+            normalize.y = this.calculateByNewResolution(this.originalHeight, canvas.height, this.map.Y);
+
+            console.log(normalize);
+          }
+
+          if (this.map.X && this.map.Y && this.map.Width && this.map.Height) {
+            if (this.map.ForceRenderX) {
+              ctx.drawImage(
+                img,
+                normalize.x,
+                (normalize.y + (normalize.heightArea / 2) - (normalize.height / 2)),
+                normalize.width,
+                normalize.height
+              );
+            } else {
+              ctx.drawImage(
+                img,
+                (normalize.x + (normalize.widthArea / 2) - (normalize.width / 2)),
+                (normalize.y + (normalize.heightArea / 2) - (normalize.height / 2)),
+                normalize.width,
+                normalize.height
+              );
+            }
+
+          } else {
+            ctx?.drawImage(img, 0, 0, normalize.width, normalize.height);
+          }
         };
 
         break;
@@ -135,7 +203,7 @@ export class CanvasAdvancedComponent implements OnInit {
       console.log("NOT LOAD, CREATING IMAGE");
       this.generatingImage = true;
 
-      this.generatedImage.src = this.canvasRender.nativeElement?.toDataURL();
+      this.generatedImage.src = this.canvasRender.nativeElement?.toDataURL('image/png', 0.75);
 
       this.generatedImage.onload = () => {
         this.generatingImage = false;
