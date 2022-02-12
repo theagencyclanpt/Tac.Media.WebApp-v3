@@ -101,6 +101,8 @@ export class FormResultComponent implements OnInit, OnChanges {
   onClickHandler(key: any, removed: any) {
     if (removed) {
       this.form.get(key)?.setValue(null);
+      //@ts-ignore
+      this.data.Inputs[key] = null;
       this.OnChangeForm.emit({ key: key, value: null });
       return;
     }
