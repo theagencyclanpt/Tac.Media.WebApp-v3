@@ -1,0 +1,98 @@
+{
+  "Game": "VALORANT",
+  "Style": "RESULTADO",
+  "Type": "TWITTER",
+  "Width": 1920,
+  "Height": 1080,
+  "Layers": {
+    "0": "/assets/result/twitter/Layer_1.png",
+    "1": [
+      "/assets/result/twitter/Layer_2/valorant/Victory/1.png",
+      "/assets/result/twitter/Layer_2/valorant/Victory/2.png",
+      "/assets/result/twitter/Layer_2/valorant/Victory/3.png"
+    ],
+    "2": "/assets/result/twitter/Layer_3/valorant/2.png"
+  },
+  "Actions": {
+    "ChangeLayerToVictoryAction": {
+      "Layer": {
+        "1": [
+          "/assets/result/twitter/Layer_2/valorant/Victory/1.png",
+          "/assets/result/twitter/Layer_2/valorant/Victory/2.png",
+          "/assets/result/twitter/Layer_2/valorant/Victory/3.png"
+        ],
+        "2": "/assets/result/twitter/Layer_3/valorant/2.png"
+      }
+    },
+    "ChangeLayerToDefeatAction": {
+      "Layer": {
+        "1": [
+          "/assets/result/twitter/Layer_2/valorant/Defeat/1.png",
+          "/assets/result/twitter/Layer_2/valorant/Defeat/2.png",
+          "/assets/result/twitter/Layer_2/valorant/Defeat/3.png"
+        ],
+        "2": "/assets/result/twitter/Layer_3/valorant/0.png"
+      }
+    },
+    "ChangeLayerToDrawAction": {
+      "Layer": {
+        "1": [
+          "/assets/result/twitter/Layer_2/valorant/Defeat/1.png",
+          "/assets/result/twitter/Layer_2/valorant/Defeat/2.png",
+          "/assets/result/twitter/Layer_2/valorant/Defeat/3.png"
+        ],
+        "2": "/assets/result/twitter/Layer_3/valorant/1.png"
+      }
+    }
+  },
+  "Inputs": [
+    {
+      "Id": "campeonato",
+      "Type": "text",
+      "X": 1265,
+      "Y": 610,
+      "Font": {
+        "Size": 38,
+        "Family": "BebasNeueRegular"
+      },
+      "Color": "white",
+      "TextAlign": "end"
+    },
+    {
+      "Id": "score",
+      "Type": "text",
+      "X": 1583,
+      "Y": 621,
+      "Font": {
+        "Size": 64,
+        "Family": "HansonBold"
+      },
+      "Color": "white",
+      "TextAlign": "center"
+    },
+    {
+      "Id": "team1logo",
+      "Type": "image",
+      "X": 1317,
+      "Y": 545,
+      "Width": 115,
+      "Height": 115
+    },
+    {
+      "Id": "team2logo",
+      "Type": "image",
+      "X": 1740,
+      "Y": 545,
+      "Width": 115,
+      "Height": 115
+    },
+    {
+      "Id": "ligalogo",
+      "Type": "image",
+      "X": 1157,
+      "Y": 570,
+      "Width": 115,
+      "Height": 115
+    }
+  ]
+}

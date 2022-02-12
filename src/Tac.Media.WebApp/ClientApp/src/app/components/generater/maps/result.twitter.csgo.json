@@ -1,0 +1,91 @@
+{
+  "Game": "CSGO",
+  "Style": "RESULTADO",
+  "Type": "TWITTER",
+  "Width": 1920,
+  "Height": 1080,
+  "Layers": {
+    "0": "/assets/result/twitter/Layer_1.png",
+    "1": [
+      "/assets/result/twitter/Layer_2/csgo/Victory/1.png",
+      "/assets/result/twitter/Layer_2/csgo/Victory/2.png",
+      "/assets/result/twitter/Layer_2/csgo/Victory/3.png",
+      "/assets/result/twitter/Layer_2/csgo/Victory/4.png"
+    ],
+    "2": "/assets/result/twitter/Layer_3/csgo/1.png"
+  },
+  "Actions": {
+    "ChangeLayerToVictoryAction": {
+      "Layer": {
+        "1": [
+          "/assets/result/twitter/Layer_2/csgo/Victory/1.png",
+          "/assets/result/twitter/Layer_2/csgo/Victory/2.png",
+          "/assets/result/twitter/Layer_2/csgo/Victory/3.png",
+          "/assets/result/twitter/Layer_2/csgo/Victory/4.png"
+        ],
+        "2": "/assets/result/twitter/Layer_3/csgo/1.png"
+      }
+    },
+    "ChangeLayerToDefeatAction": {
+      "Layer": {
+        "1": [
+          "/assets/result/twitter/Layer_2/csgo/Defeat/1.png",
+          "/assets/result/twitter/Layer_2/csgo/Defeat/2.png",
+          "/assets/result/twitter/Layer_2/csgo/Defeat/3.png",
+          "/assets/result/twitter/Layer_2/csgo/Defeat/4.png"
+        ],
+        "2": "/assets/result/twitter/Layer_3/csgo/2.png"
+      }
+    }
+  },
+  "Inputs": [
+    {
+      "Id": "campeonato",
+      "Type": "text",
+      "X": 1265,
+      "Y": 610,
+      "Font": {
+        "Size": 38,
+        "Family": "BebasNeueRegular"
+      },
+      "Color": "white",
+      "TextAlign": "end"
+    },
+    {
+      "Id": "score",
+      "Type": "text",
+      "X": 1583,
+      "Y": 621,
+      "Font": {
+        "Size": 64,
+        "Family": "HansonBold"
+      },
+      "Color": "white",
+      "TextAlign": "center"
+    },
+    {
+      "Id": "team1logo",
+      "Type": "image",
+      "X": 1317,
+      "Y": 545,
+      "Width": 115,
+      "Height": 115
+    },
+    {
+      "Id": "team2logo",
+      "Type": "image",
+      "X": 1740,
+      "Y": 545,
+      "Width": 115,
+      "Height": 115
+    },
+    {
+      "Id": "ligalogo",
+      "Type": "image",
+      "X": 1157,
+      "Y": 570,
+      "Width": 115,
+      "Height": 115
+    }
+  ]
+}

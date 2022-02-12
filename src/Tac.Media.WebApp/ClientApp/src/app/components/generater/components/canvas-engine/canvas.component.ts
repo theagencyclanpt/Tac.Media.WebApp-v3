@@ -123,8 +123,6 @@ export class CanvasAdvancedComponent implements OnInit, OnChanges, OnDestroy {
 
             normalize.x = this.calculateByNewResolution(this.originalWidth, canvas.width, this.map.X);
             normalize.y = this.calculateByNewResolution(this.originalHeight, canvas.height, this.map.Y);
-
-            console.log(normalize);
           }
 
           if (this.map.X && this.map.Y && this.map.Width && this.map.Height) {

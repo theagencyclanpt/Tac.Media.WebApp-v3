@@ -16,6 +16,14 @@
         </mat-select>
       </mat-form-field>
     </div>
+    <div class="content row" style="margin-bottom: 10px;">
+      <mat-button-toggle-group style="width: 100%;" [(value)]="previewType">
+        <mat-button-toggle style="width: 100%;" value="INSTAGRAM" (change)="onPreviewTypeChange($event.value)">Instagram
+        </mat-button-toggle>
+        <mat-button-toggle style="width: 100%;" value="TWITTER" (change)="onPreviewTypeChange($event.value)">Twitter
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
     <div class="content form">
       <form-result [gameType]="gameType" (invokeAction)="invokeAction($event)" (onChangeForm)="onFormChange($event)">
       </form-result>

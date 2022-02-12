@@ -125,6 +125,11 @@ export class GeneraterComponent implements OnInit, AfterViewInit {
     this.map();
   }
 
+  onPreviewTypeChange(value: string) {
+    this.previewType = value;
+    this.map();
+  }
+
   invokeAction(actionName: string) {
     let action = this.selectedMap.Actions[actionName];
 
