@@ -1,7 +1,10 @@
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Maps } from "./maps/export";
 import { CanvasEngineComponent, IPaint } from "./components/canvas-engine/canvas-engine.component";
 import { FormResultComponent } from "./components/form-result/form-result.component";
+import { DialogDownloadComponent } from "./components/dialog-download/dialog-download.component";
+import { ApiClientService } from '../../services/client/api-client.service';
 
 @Component({
   selector: 'app-generater',
@@ -29,6 +32,9 @@ export class GeneraterComponent implements OnInit, AfterViewInit {
     width: 0,
     heigth: 0
   }
+
+  constructor(public dialog: MatDialog,
+    private _api: ApiClientService) { }
 
   ngOnInit(): void {
     this.map();
@@ -164,12 +170,34 @@ export class GeneraterComponent implements OnInit, AfterViewInit {
     return this.formResult?.getAllData();
   }
 
-  public async onDownload() {
-    let image = await this.canvasEngine.GetResult();
+  onPreviewClick() {
+    this.onPreviewTypeChange(this.previewType == "INSTAGRAM" ? "TWITTER" : "INSTAGRAM");
+  }
 
-    var link = document.createElement('a');
-    link.download = 'instagram.jpg';
-    link.href = image.src;
-    link.click();
+  public async onPublish() {
+    // let image = await this.canvasEngine.GetResult();
+
+    // var link = document.createElement('a');
+    // link.download = 'instagram.jpg';
+    // link.href = image.src;
+    // link.click();
+    // console.log(this._api);
+
+    // let image = await this.canvasEngine.GetResult();
+
+    // this._api.Banner.generateUrl({
+    //   InstagramBase64: image.src,
+    //   TwitterBase64: image.src
+    // }).subscribe((data: any) => {
+    //   console.log(data);
+    // });
+
+    const dialogRef = this.dialog.open(DialogDownloadComponent, {
+      width: "100%",
+      maxWidth: "500px",
+      data: {
+        getImage: async () => await this.canvasEngine.GetResult()
+      }
+    });
   }
 }

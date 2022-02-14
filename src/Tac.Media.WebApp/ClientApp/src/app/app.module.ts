@@ -5,7 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CookieService } from 'ngx-cookie-service';
+import { HttpClientModule } from '@angular/common/http';
 
+import { ApiClientService } from "./services/client/api-client.service";
 import { LoginComponent } from './components/login/login.component';
 import { GeneraterComponent } from './components/generater/generater.component';
 import { PublishComponent } from './components/publish/publish.component';
@@ -14,6 +16,8 @@ import { FormResultComponent } from './components/generater/components/form-resu
 import { FormAnnouncementComponent } from './components/generater/components/form-announcement/form-announcement.component';
 import { CanvasEngineComponent } from './components/generater/components/canvas-engine/canvas-engine.component';
 import { CanvasAdvancedComponent } from './components/generater/components/canvas-engine/canvas.component';
+import { DialogDownloadComponent } from "./components/generater/components/dialog-download/dialog-download.component";
+
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,6 +29,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 @NgModule({
   declarations: [
@@ -36,10 +42,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     FormResultComponent,
     FormAnnouncementComponent,
     CanvasEngineComponent,
-    CanvasAdvancedComponent
+    CanvasAdvancedComponent,
+    DialogDownloadComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
@@ -52,9 +60,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatDatepickerModule,
     MatProgressSpinnerModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
-  providers: [CookieService],
+  providers: [
+    CookieService,
+    ApiClientService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

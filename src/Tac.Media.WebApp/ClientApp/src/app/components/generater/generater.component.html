@@ -29,11 +29,10 @@
       </form-result>
     </div>
     <div class="content row actions">
-      <button mat-raised-button style="margin-right: 5px;" (click)="onDownload()">Download</button>
-      <button mat-raised-button>Publish</button>
+      <button mat-raised-button (click)="onPublish()">Publish</button>
     </div>
   </div>
-  <div #previewDiv class="preview">
+  <div #previewDiv class="preview" (click)="onPreviewClick()">
     <canvas-engine [maxHeight]="defaultPreview.heigth" [maxWidth]="defaultPreview.width" [layers]="layers"
       [originalHeight]="selectedMap.Height" [originalWidth]="selectedMap.Width" [inputs]="inputs">
     </canvas-engine>
