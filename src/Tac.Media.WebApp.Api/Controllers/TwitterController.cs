@@ -44,7 +44,8 @@ namespace Tac.Media.WebApp.Api.Controllers
 
             //var t = await client.AddTweetStreamAsync(request);
 
-            var userClient = new TwitterClient("lcrfpBzN820UJTJpaxAXt6R6f", "xCW9M9xcmwt5qPLYBaAfyz59t6ScOboZvjW4RsdNnrrj31mCD3", "1248760346619383809-AqUCguOhbWEKrt4H2spcBK3TlmIURW", "bAYdRsbI52sj08s80Mzgvj5m1gMXMg5JaDPumfUUPJRgW");
+            //var userClient = new TwitterClient("lcrfpBzN820UJTJpaxAXt6R6f", "xCW9M9xcmwt5qPLYBaAfyz59t6ScOboZvjW4RsdNnrrj31mCD3", "1248760346619383809-AqUCguOhbWEKrt4H2spcBK3TlmIURW", "bAYdRsbI52sj08s80Mzgvj5m1gMXMg5JaDPumfUUPJRgW");
+            var userClient = new TwitterClient("", "", "", "");
             var user = await userClient.Users.GetAuthenticatedUserAsync();
 
             var tweetinviLogoBinary = File.ReadAllBytes("D:/Temp/Banners/86d51b1a-46a4-4ec7-a774-ee71c1922c3f/twitter.jpeg");

@@ -4,14 +4,14 @@ import { LoginComponent } from './components/login/login.component';
 import { GeneraterComponent } from './components/generater/generater.component';
 import { PublishComponent } from './components/publish/publish.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { AppGuardGuard } from './app-guard.guard';
+import { AuthenticationGuad } from './authentication.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/generater', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'generater', component: GeneraterComponent },
-  { path: 'publish', component: PublishComponent },
-  { path: 'settings', component: SettingsComponent },
+  { path: 'generater', component: GeneraterComponent, canActivate: [AuthenticationGuad] },
+  { path: 'publisher', component: PublishComponent, canActivate: [AuthenticationGuad] },
+  { path: 'settings', component: SettingsComponent, canActivate: [AuthenticationGuad] },
 ];
 
 @NgModule({

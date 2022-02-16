@@ -1,0 +1,23 @@
+<div class="center">
+  <button mat-button [class.active]="onRoute('/publisher')" (click)="goToRoute('publisher')">
+    Publisher
+  </button>
+  <button mat-button [class.active]="onRoute('/generater')" (click)="goToRoute('generater')">
+    Generater
+  </button>
+  <button mat-button [class.active]="onRoute('/settings')" (click)="goToRoute('settings')">
+    Settings
+  </button>
+</div>
+<div class="right">
+  <button mat-button [matMenuTriggerFor]="menu">
+    Bem vindo, User1
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+</div>

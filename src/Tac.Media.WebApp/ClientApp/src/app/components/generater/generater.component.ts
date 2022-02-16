@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Maps } from "./maps/export";
 import { CanvasEngineComponent, IPaint } from "./components/canvas-engine/canvas-engine.component";
 import { FormResultComponent } from "./components/form-result/form-result.component";
@@ -11,7 +11,7 @@ import { ApiClientService } from '../../services/client/api-client.service';
   templateUrl: './generater.component.html',
   styleUrls: ['./generater.component.scss']
 })
-export class GeneraterComponent implements OnInit, AfterViewInit {
+export class GeneraterComponent implements OnInit {
 
   @ViewChild('previewDiv', { static: true })
   previewDivElement!: ElementRef<HTMLDivElement>;
@@ -33,8 +33,7 @@ export class GeneraterComponent implements OnInit, AfterViewInit {
     heigth: 0
   }
 
-  constructor(public dialog: MatDialog,
-    private _api: ApiClientService) { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.map();
@@ -42,12 +41,6 @@ export class GeneraterComponent implements OnInit, AfterViewInit {
       width: this.previewDivElement.nativeElement.clientWidth,
       heigth: this.previewDivElement.nativeElement.clientHeight
     }
-  }
-
-  ngAfterViewInit(): void {
-    // setTimeout(() => {
-    //   this.canvasEngine.changeLayer(1, this.selectedMap.Layers["1"][1]);
-    // }, 2000);
   }
 
   @HostListener('window:resize')

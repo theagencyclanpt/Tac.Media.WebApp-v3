@@ -20,7 +20,7 @@ namespace Tac.Media.WebApp
         Host.CreateDefaultBuilder(args)
             .ConfigureWebHostDefaults(webBuilder =>
             {
-                webBuilder.UseStartup<Startup>().UseUrls("http://*:8080");
+                webBuilder.UseStartup<Startup>().UseUrls("http://*:9091");
             });
     }
 }

@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AppGuardGuard implements CanActivate {
-  constructor(protected cookieService: CookieService,
-    protected router: Router) {
-  }
+export class AuthenticationGuad implements CanActivate {
+  constructor(protected router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
-    if (this.cookieService.check('user')) {
+    if (localStorage.getItem('token')) {
       return true;
     }
-    return this.router.parseUrl('login');
+    this.router.navigate(['login'], { queryParams: { 'redirect': state.url } });
+    return false;
   }
 }

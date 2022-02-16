@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SixLabors.ImageSharp;
@@ -12,6 +13,7 @@ using Tac.Media.WebApp.Api.Models;
 namespace Tac.Media.WebApp.Api.Controllers
 {
     
+    [Authorize]
     [ApiController]
     [Route("api/banner")]
     public class BannerController
@@ -63,13 +65,14 @@ namespace Tac.Media.WebApp.Api.Controllers
             }
 
             await SaveImageBase64OnTempDirectory(tempDirectory + "/instagram.jpeg", request.InstagramBase64);
-            await SaveImageBase64OnTempDirectory(tempDirectory + "/twitter.jpeg", request.TwitterBase64);
+            //await SaveImageBase64OnTempDirectory(tempDirectory + "/twitter.jpeg", request.TwitterBase64);
 
             return new GenerateBannerUrlResponse(guid.ToString());
         }
 
         private async Task SaveImageBase64OnTempDirectory(string directory, string imageBase64)
         {
+            imageBase64 = imageBase64.Replace("data:image/jpeg;base64,", "");
             byte[] bytes = Convert.FromBase64String(imageBase64);
 
 
