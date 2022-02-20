@@ -24,6 +24,9 @@
       "dom"
     ],
     "paths": {
+      "@models/*": [
+        "app/services/client/models/*"
+      ],
       "@services/*": [
         "app/services/*"
       ],

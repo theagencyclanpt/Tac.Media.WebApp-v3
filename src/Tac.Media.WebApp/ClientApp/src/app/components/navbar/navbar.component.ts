@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from "@services/authentication/authentication.service";
 
 @Component({
   selector: 'navbar',
@@ -8,10 +9,17 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private router: Router) {
-  }
+  mobile: boolean = false;
+
+  constructor(
+    private router: Router,
+    private _authService: AuthenticationService
+  ) { }
 
   ngOnInit(): void {
+    if (window.screen.width <= 924) {
+      this.mobile = true;
+    }
   }
 
   public onRoute(route: string) {
@@ -20,5 +28,14 @@ export class NavbarComponent implements OnInit {
 
   public goToRoute(route: string) {
     this.router.navigate([route]);
+  }
+
+  public onLogout() {
+    this._authService.logout();
+    window.location.reload();
+  }
+
+  public getUserName() {
+    return this._authService.getUser()?.name;
   }
 }

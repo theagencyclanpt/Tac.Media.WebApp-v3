@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { Observable, throwError } from "rxjs";
 
 @Injectable()
-export class AuthenticationInterceptor implements HttpInterceptor {
+export class CheckAuthenticationInterceptor implements HttpInterceptor {
   constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   intercept(request: HttpRequest<any>, newRequest: HttpHandler): Observable<HttpEvent<any>> {

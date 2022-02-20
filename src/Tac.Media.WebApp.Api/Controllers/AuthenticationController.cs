@@ -14,7 +14,7 @@ namespace Tac.Media.WebApp.Api.Controllers
     public class AuthenticationController : ControllerBase
     {
         [HttpPost, Route("login")]
-        public IActionResult Login([FromBody] LoginModel user)
+        public IActionResult Login([FromBody] LoginRequestModel user)
         {
             if (user == null)
             {
@@ -32,7 +32,12 @@ namespace Tac.Media.WebApp.Api.Controllers
                     signingCredentials: signinCredentials
                 );
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-                return Ok(new { Token = tokenString });
+                return Ok(new UserModel()
+                {
+                    Name = "Dev",
+                    Email = "dev.theagencyclan.pt",
+                    Token = tokenString
+                });
             }
             else
             {

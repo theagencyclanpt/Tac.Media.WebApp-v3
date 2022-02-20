@@ -6,19 +6,15 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CheckAuthenticationInterceptor } from "@interceptor/check-authentication.interceptor";
+import { SetAuthenticationInterceptor } from "@interceptor/set-authentication.interceptor";
 
 import { ApiClientService } from "./services/client/api-client.service";
 import { AuthenticationService } from "./services/authentication/authentication.service";
-import { AuthenticationInterceptor } from "@interceptor/authentication.interceptor";
 import { LoginComponent } from './components/login/login.component';
-import { GeneraterComponent } from './components/generater/generater.component';
 import { PublishComponent } from './components/publish/publish.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { FormResultComponent } from './components/generater/components/form-result/form-result.component';
-import { FormAnnouncementComponent } from './components/generater/components/form-announcement/form-announcement.component';
-import { CanvasEngineComponent } from './components/generater/components/canvas-engine/canvas-engine.component';
-import { CanvasAdvancedComponent } from './components/generater/components/canvas-engine/canvas.component';
-import { DialogDownloadComponent } from "./components/generater/components/dialog-download/dialog-download.component";
+
 import { NavbarComponent } from "./components/navbar/navbar.component";
 
 import { MatNativeDateModule } from '@angular/material/core';
@@ -34,19 +30,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    GeneraterComponent,
     PublishComponent,
     SettingsComponent,
-    FormResultComponent,
-    FormAnnouncementComponent,
-    CanvasEngineComponent,
-    CanvasAdvancedComponent,
-    DialogDownloadComponent,
     NavbarComponent
   ],
   imports: [
@@ -67,13 +59,18 @@ import { MatMenuModule } from '@angular/material/menu';
     MatSnackBarModule,
     MatDialogModule,
     MatNativeDateModule,
-    MatMenuModule
+    MatMenuModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    })
   ],
   providers: [
     CookieService,
     ApiClientService,
     AuthenticationService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: SetAuthenticationInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: CheckAuthenticationInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

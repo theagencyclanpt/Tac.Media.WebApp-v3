@@ -4,7 +4,6 @@ import { Maps } from "./maps/export";
 import { CanvasEngineComponent, IPaint } from "./components/canvas-engine/canvas-engine.component";
 import { FormResultComponent } from "./components/form-result/form-result.component";
 import { DialogDownloadComponent } from "./components/dialog-download/dialog-download.component";
-import { ApiClientService } from '../../services/client/api-client.service';
 
 @Component({
   selector: 'app-generater',
